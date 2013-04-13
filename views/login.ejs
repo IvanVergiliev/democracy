@@ -1,21 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Изборни дисциплини ФМИ - Влез</title>
-    <script type="text/javascript" src="/js/jquery.js"></script>
-  </head>
-  <body>
-    <% if (typeof(error) !== 'undefined') { %>
-      <%= error %>
-    <% } %>
-    <form action="login" method="post">
-      <p>
-        <input type="text" name="username" placeholder="Потребителско име">
-      </p>
-      <p>
-        <input type="password" name="password" placeholder="Парола">
-      </p>
-      <input type="submit">
-    </form>
-  </body>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Изборни дисциплини - Вход</title>
+        <link href="css/bootstrap-readable.min.css" rel="stylesheet">
+        <link href="css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="css/login.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container container-body">
+            <form class="form-signin" action="login" method="post">
+                <h2 class="form-signin-heading">Вход в системата</h2>
+                <!--                <input type="text" class="input-block-level" placeholder="Имейл адрес" name="email"> /-->
+                <input type="text" name="username" placeholder="Потребителско име" class="input-block-level">
+                <input type="password" class="input-block-level" placeholder="Парола" name="password">
+                <button class="btn btn-large btn-primary" type="submit">Вход</button>
+            </form>
+        </div>
+
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </body>
 </html>
