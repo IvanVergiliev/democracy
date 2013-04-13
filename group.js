@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Enrollment = require('./enrollment.js');
 
 var groupSchema = new mongoose.Schema({
   name: String,
@@ -48,7 +49,18 @@ groupSchema.methods.fix = function (cb) {
       }
       cb();
   });
-}
+};
+
+groupSchema.methods.addEnrollment = function (courseId, cb) {
+  console.log('course id is ');
+  console.log(courseId);
+  var enrollment = new Enrollment({
+    startDate: Date.now(),
+    _group: this._id,
+    _course: courseId
+  });
+  enrollment.save(cb);
+};
 
 var Group = mongoose.model('Group', groupSchema);
 

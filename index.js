@@ -136,4 +136,33 @@ app.get('/teacherCourses', function(req, res) {
   });
 });
 
+app.post('/enroll', function(req, res) {
+  var data = req.body;
+  var userId = req.session.user._id;
+  console.log('course id is ');
+  console.log(data.courseId);
+  var user = User.findOne({_id: userId}, function (err, user) {
+    console.log(user);
+    user.canAddGroup(1, function (ok) {
+      // TODO: Prone to TOCTOU attacks - MUST be fix if going to production.
+      if (ok) {
+        user.addGroup(null, 1, function (err, group) {
+          group.addEnrollment(data.courseId, function (err, enrollment) {
+            res.json({
+              result: true
+            });
+          });
+        });
+        // enroll
+        // return OK
+      } else {
+        res.json({
+          result: false,
+          msg: 'Нямаш право да записваш повече изборни!'
+        });
+      }
+    });
+  });
+});
+
 app.listen(3000);

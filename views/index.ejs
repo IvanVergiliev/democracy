@@ -140,7 +140,7 @@
                             <td><abbr title="Математика"><%= courses[i].group %></abbr></td>
                             <td><%= courses[i].ects %></td>
                             <td>
-                                <a href="#enroll-linux-sys-admin" role="button" class="btn btn-success showEnroll" data-toggle="modal">Запиши</a>
+                              <a href="#enroll-linux-sys-admin" role="button" class="btn btn-success showEnroll" data-toggle="modal" data-id="<%= courses[i]._id %>">Запиши</a>
                             </td>
                           </tr>
                         <% } %>
