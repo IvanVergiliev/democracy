@@ -3,7 +3,7 @@ var async = require('async');
 var MemoryStore = require('connect').session.MemoryStore;
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://164.138.216.139/hackfmi');
+mongoose.connect('mongodb://localhost/hackfmi');
 
 var db = mongoose.connection;
 db.on('error', function(err) {
@@ -99,6 +99,31 @@ app.get('/enrollments', function(req, res) {
     }],
     function (x) {
       res.end();
+  });
+});
+
+app.get('/addCourse', function(req, res){
+  res.render('add-course');
+});
+
+app.post('/addCourse', function(req, res){
+  var data = req.body;
+  var user = req.session.user;
+
+  var course = new Course(data);
+  course._teacher = user._id;
+
+  course.save(function(err, user) {
+    res.redirect('/');
+  });
+});
+
+app.get('/teacherCourses', function(req, res) {
+  var user = req.session.user;
+  Course.find({_teacher: user._id}, function(err, courses) {
+    err && console.log(err);
+    res.write(courses.toString());
+    res.end();
   });
 });
 

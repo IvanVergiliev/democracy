@@ -8,7 +8,6 @@ var userSchema = new mongoose.Schema({
 
 userSchema.statics.exists = function (user, pass, cb) {
   this.findOne({username: user, password: pass}, function(err, user) {
-    console.log(user);
     cb(err, user);
   });
 };

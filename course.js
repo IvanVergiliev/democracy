@@ -4,8 +4,14 @@ var courseSchema = new mongoose.Schema({
   name: String,
   ects: Number,
   group: String,
-  description: String
+  description: String,
+  limit: Number,
+  _teacher: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }
 });
+
 
 var Course = mongoose.model('Course', courseSchema);
 
