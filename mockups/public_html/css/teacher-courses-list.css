@@ -1,0 +1,28 @@
+/* for bootstrap-redable */
+body {
+    background-color: #fff;
+}
+
+.container-body {
+    margin-top: 60px;
+}
+
+.id-list {
+    border: 1px solid #ddd;
+}
+.id-list thead {
+    background-color: #efefef;
+}
+
+@media screen and (min-width: 768px) {
+    .id-list thead tr td::nth-child(2n):not(:nth-child(4n)), 
+    .id-list tbody tr td:nth-child(2n):not(:nth-child(4n)) {
+        display: table-cell;
+    }
+}
+@media screen and (max-width: 767px) {
+    .id-list thead tr td:nth-child(2n):not(:nth-child(4n)), 
+    .id-list tbody tr td:nth-child(2n):not(:nth-child(4n)) {
+        display: none;
+    }
+} 

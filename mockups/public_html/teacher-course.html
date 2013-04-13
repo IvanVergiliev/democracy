@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>СУСИ</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="css/teacher-course.css" rel="stylesheet">
+    </head>
+    <body>
+        <!-- Nav -->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="#">СУСИ</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li><a href="#">Моите курсове</a></li>
+                        </ul>
+                        <ul class="nav pull-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Професор <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Съобщения</a></li>
+                                    <li class="divider"></li>
+                                    <li class="nav-header">Насторйки</li>
+                                    <li><a href="#">Смяна на парола</a></li>
+                                </ul>
+                            </li>
+                            <li class="divider-vertical"></li>
+                            <li><a href="#" title="Изход от профила">Изход</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container container-body">
+
+            <!--breadcrums -->
+            <ul class="breadcrumb">
+                <li><a href="#">Моите курсове</a> <span class="divider">/</span></li>
+                <li class="active">Анализ 1</li>
+            </ul>
+            
+            <!-- chart -->
+            <div id="chart-container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+
+            <!-- list of my courses -->
+            <table class="students-list table table-hover">
+                <thead>
+                    <tr>
+                        <td class="span1">ФН</td>
+                        <td class="span10">Име</td>
+                        <td class="span4">Дата на записване</td>
+                        <td>Действие</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="success">
+                        <td>30455</td>
+                        <td>Петър Петров</td>
+                        <td>2 април 2013, 9:55</td>
+                        <td>
+                            <button class="btn btn-danger" type="button">Отпиши</button>
+                        </td>
+                    </tr>
+                    <tr class="success">
+                        <td>30556</td>
+                        <td>Петър Петров</td>
+                        <td>2 април 2013, 10:11</td>
+                        <td>
+                            <button class="btn btn-danger" type="button">Отпиши</button>
+                        </td>
+                    </tr>
+                    <tr class="success">
+                        <td>30262</td>
+                        <td>Петър Петров</td>
+                        <td>2 април 2013, 9:53</td>
+                        <td>
+                            <button class="btn btn-danger" type="button">Отпиши</button>
+                        </td>
+                    </tr>
+                    <tr class="warning">
+                        <td>30111</td>
+                        <td>Петър Петров</td>
+                        <td>2 април 2013, 10:23</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                    Избери действие
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Запиши</a></li>
+                                    <li><a href="#">Отпиши</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="warning">
+                        <td>30145</td>
+                        <td>Петър Петров</td>
+                        <td>2 април 2013, 11:01</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                    Избери действие
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Запиши</a></li>
+                                    <li><a href="#">Отпиши</a></li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <footer>
+                <p>&copy; HackFMI 2013</p>
+            </footer>
+
+        </div> <!-- container-body -->
+
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/highcharts/highcharts.js"></script>
+        <script src="js/highcharts/modules/exporting.js"></script>
+        <script src="js/teacher-course-chart.js"></script>
+    </body>
+</html>
