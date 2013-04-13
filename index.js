@@ -2,7 +2,7 @@ var express = require('express');
 var MemoryStore = require('connect').session.MemoryStore;
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/hackfmi');
+mongoose.connect('mongodb://164.138.216.139/hackfmi');
 
 var db = mongoose.connection;
 db.on('error', function(err) {
