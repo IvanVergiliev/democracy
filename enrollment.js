@@ -3,9 +3,9 @@ var mongoose = require('mongoose');
 var enrollmentSchema = new mongoose.Schema({
   startDate: Date,
   endDate: Date,
-  _user: {
+  _group: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'Group'
   },
   _course: {
     type: mongoose.Schema.Types.ObjectId,
@@ -13,15 +13,15 @@ var enrollmentSchema = new mongoose.Schema({
   }
 });
 
-enrollmentSchema.statics.forUser = function (user, cb) {
-  this.find({ _user: user._id })
+enrollmentSchema.statics.forGroup = function (group, cb) {
+  this.find({ _group: group._id })
     .populate('_course')
     .exec(cb);
 };
 
 enrollmentSchema.statics.forCourse = function (course, cb) {
   this.find({ _course: course._id })
-    .populate('_user')
+    .populate('_group')
     .exec(cb);
 };
 

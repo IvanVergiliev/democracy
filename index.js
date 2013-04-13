@@ -11,6 +11,7 @@ db.on('error', function(err) {
 });
 
 var User = require('./user.js');
+var Group = require('./group.js');
 var Course = require('./course.js');
 var Enrollment = require('./enrollment.js');
 
@@ -63,8 +64,8 @@ app.get('/enrollments', function(req, res) {
   var enr = new Enrollment({startDate: Date.now()});
   async.series([
     function(cb) {
-      User.findOne(function (err, user) {
-        Enrollment.forUser(user, function(err, enr) {
+      Group.findOne(function (err, group) {
+        Enrollment.forGroup(group, function(err, enr) {
           res.write(enr.toString());
           cb();
         });
