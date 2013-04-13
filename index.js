@@ -1,4 +1,5 @@
 var express = require('express');
+var async = require('async');
 var MemoryStore = require('connect').session.MemoryStore;
 var mongoose = require('mongoose');
 
@@ -11,6 +12,7 @@ db.on('error', function(err) {
 
 var User = require('./user.js');
 var Course = require('./course.js');
+var Enrollment = require('./enrollment.js');
 
 var app = express();
 
@@ -53,6 +55,31 @@ app.post('/register', function(req, res) {
   user.save(function(err, user) {
     req.session.user = user;
     res.redirect('/');
+  });
+});
+
+app.get('/enrollments', function(req, res) {
+  var data = req.body;
+  var enr = new Enrollment({startDate: Date.now()});
+  async.series([
+    function(cb) {
+      User.findOne(function (err, user) {
+        Enrollment.forUser(user, function(err, enr) {
+          res.write(enr.toString());
+          cb();
+        });
+      });
+    },
+    function(cb) {
+      Course.findOne(function (err, course) {
+        Enrollment.forCourse(course, function(err, enr) {
+          res.write(enr.toString());
+          cb();
+        });
+      });
+    }],
+    function (x) {
+      res.end();
   });
 });
 
