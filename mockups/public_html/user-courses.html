@@ -136,7 +136,7 @@
             <div class="tab-content">
                 <!-- not enrolled courses -->
                 <div class="tab-pane active" id="not-enrolled">
-                    
+
                     <!-- list of not enrolled courses -->
                     <table class="id-list table table-hover">
                         <thead>
@@ -149,31 +149,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="success">
-                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">Линукс системно администриране</a></td>
-                                <td>М. Маринов</td>
-                                <td><abbr title="Ядро на компютърните науки">ЯКН</abbr></td>
-                                <td>7</td>
-                                <td>
-                                    <button class="btn btn-danger" type="button">Отпиши</button>
-                                </td>
-                            </tr>
-                            <tr class="warning">
-                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">МУИ</a></td>
-                                <td>unnamed</td>
-                                <td><abbr title="Приложна математика">ПМ</abbr></td>
-                                <td>7</td>
-                                <td>
-                                    <button class="btn btn-warning" type="button">Напусни опашката</button>
-                                </td>
-                            </tr>
                             <tr>
-                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">Анализ 1</a></td>
+                                <td><a href="#info-linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">Анализ 1</a></td>
                                 <td>А. Александров</td>
                                 <td><abbr title="Математика">М</abbr></td>
                                 <td>6</td>
                                 <td>
-                                    <button class="btn btn-success" onclick="alertSuccess(5)" type="button">Запиши</button>
+                                    <a href="#enroll-linux-sys-admin" role="button" class="btn btn-success" data-toggle="modal">Запиши</a>
                                 </td>
                             </tr>
                             <tr>
@@ -236,17 +218,145 @@
                 </div>
 
                 <!-- queued courses -->
-                <div class="tab-pane" id="queued">опашка и групи</div>
+                <div class="tab-pane" id="queued">
+
+                    <div class="container span3">
+                        <h3>Група 1</h3>
+                        <table class="id-list table table-hover">
+                            <thead>
+                                <tr>
+                                    <td>#</td>
+                                    <td>Дисциплина</td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="warning">
+                                    <td>1</td>
+                                    <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">МУИ</a></td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                                Избери действие
+                                                <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Премести нагоре</a></li>
+                                                <li><a href="#">Премести надолу</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#">Отпиши</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="warning">
+                                    <td>1</td>
+                                    <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">МУИ</a></td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                                Избери действие
+                                                <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Премести нагоре</a></li>
+                                                <li><a href="#">Премести надолу</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#">Отпиши</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="container span3">
+                        <h3>Група 2</h3>
+                        <table class="id-list table table-hover">
+                            <thead>
+                                <tr>
+                                    <td>#</td>
+                                    <td>Дисциплина</td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="warning">
+                                    <td>1</td>
+                                    <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">МУИ</a></td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                                Избери действие
+                                                <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Премести нагоре</a></li>
+                                                <li><a href="#">Премести надолу</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#">Отпиши</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="warning">
+                                    <td>1</td>
+                                    <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">МУИ</a></td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                                Избери действие
+                                                <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Премести нагоре</a></li>
+                                                <li><a href="#">Премести надолу</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#">Отпиши</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
                 <!-- enrolled courses -->
-                <div class="tab-pane" id="enrolled">записани</div>
+                <div class="tab-pane" id="enrolled">
+
+                    <!-- list of not enrolled courses -->
+                    <table class="id-list table table-hover">
+                        <thead>
+                            <tr>
+                                <td>Дисциплина</td>
+                                <td>Преподавател</td>
+                                <td>Група</td>
+                                <td>ECTS</td>
+                                <td>Действие</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="success">
+                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">Линукс системно администриране</a></td>
+                                <td>М. Маринов</td>
+                                <td><abbr title="Ядро на компютърните науки">ЯКН</abbr></td>
+                                <td>7</td>
+                                <td>
+                                    <button class="btn btn-danger" type="button">Отпиши</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
 
 
 
-            <!-- Modal -->
-            <div id="linux-sys-admin" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="linux-sys-adminLabel" aria-hidden="true">
+            <!-- Modal - course info -->
+            <div id="info-linux-sys-admin" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="linux-sys-adminLabel" aria-hidden="true">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h3 id="myModalLabel">Линукс системно администриране</h3>
@@ -285,6 +395,37 @@
                     <button class="btn" data-dismiss="modal" aria-hidden="true">Затвори</button>
                 </div>
             </div>
+
+            <script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
+
+      <!-- Wrapping the Recaptcha create method in a javascript function -->
+      <script type="text/javascript">
+         function showRecaptcha(element) {
+           Recaptcha.create("your_public_key", element, {
+             theme: "red",
+             callback: Recaptcha.focus_response_field});
+         }
+      </script>
+            
+            <!-- Modal - course enroll -->
+            <div id="enroll-linux-sys-admin" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="linux-sys-adminLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="myModalLabel">Записване за курс</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Записване за курса <strong>Линукс системно администриране</strong></p>
+                    TODO reCAPTCHA
+                    <div id="recaptcha_div"></div>
+
+      <input type="button" value="Show reCAPTCHA" onclick="showRecaptcha('recaptcha_div');"></input>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn">Отказ</a>
+                    <a href="#" class="btn btn-success">Запиши</a>
+                </div>
+            </div>
+
 
             <footer>
                 <p>&copy; HackFMI 2013</p>

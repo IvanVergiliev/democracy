@@ -3,10 +3,6 @@ body {
     background-color: #fff;
 }
 
-div[class*='span'] { 
-    background-color: yellow;
-}
-
 .accordion-heading {
     background: #efefef url(../img/info.png) 10px 5px no-repeat;
     padding-left: 30px;
@@ -27,4 +23,7 @@ div[class*='span'] {
 }
 .id-list thead {
     background-color: #efefef;
+}
+#queued .container {
+    margin-bottom: 120px;
 }
