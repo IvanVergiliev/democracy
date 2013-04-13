@@ -1,0 +1,30 @@
+/* for bootstrap-redable */
+body {
+    background-color: #fff;
+}
+
+div[class*='span'] { 
+    background-color: yellow;
+}
+
+.accordion-heading {
+    background: #efefef url(../img/info.png) 10px 5px no-repeat;
+    padding-left: 30px;
+}
+.accordion-heading a {
+    color: #333;
+}
+.container-body {
+    margin-top: 60px;
+}
+
+.id-search input, .id-search select {
+    display: inline-block;
+}
+
+.id-list {
+    border: 1px solid #ddd;
+}
+.id-list thead {
+    background-color: #efefef;
+}
