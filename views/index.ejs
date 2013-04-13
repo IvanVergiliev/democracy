@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>СУСИ</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="css/user-courses.css" rel="stylesheet">
+    </head>
+    <body>
+        <!-- Nav -->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="#">СУСИ</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="active"><a href="#">Списък с дисциплини</a></li>
+                        </ul>
+                        <ul class="nav pull-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Михаил Николов <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Съобщения</a></li>
+                                    <li><a href="#">Справки</a></li>
+                                    <li class="divider"></li>
+                                    <li class="nav-header">Насторйки</li>
+                                    <li><a href="#">Смяна на парола</a></li>
+                                </ul>
+                            </li>
+                            <li class="divider-vertical"></li>
+                            <li><a href="#" title="Изход от профила">Изход</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container container-body">
+
+            <!-- intro -->
+            <div class="page-header">
+                <h4>Записване за избираеми дисциплини</h4>
+                <p>Записването на избираеми дисциплини се осъществява по време на <em>Кампания за записване на избираеми дисциплини</em>, която се стартира от администратора на СУСИ4 и продължава 4 седмици.</p>
+                <p><strong>Срок:</strong> 21 април 2013, 23:59</p>
+                <div class="accordion" id="accordion2">
+                    <div class="accordion-group">
+                        <div class="accordion-heading">
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">Технология на записване на избираеми дисциплини</a>
+                        </div>
+                        <div id="collapseOne" class="accordion-body collapse">
+                            <div class="accordion-inner">
+                                <p>Технологията за записване на избираеми дисциплини е следната:<br />
+                                    Записването на избираеми дисциплини (ИД) се осъществява по време на Кампания за записване на избираеми дисциплини, която се стартира от администратора на СУСИ4 и има два последователни етапа. Обявяват се три дати: начална дата на първи етап, начална дата на втори етап (първият етап приключва в 24:00 часа на предната дата) и крайна дата.</p>
+                                <p>През I етап (който може да започне далеч преди началото на семестъра, за който се записват избираеми дисциплини) студентът записва дисциплини с един от два или три възможни приоритета: твърдо решил, колебая се и (евентуално) малко вероятно. Тези приоритети трябва да отразяват неговата предварителна нагласа за дисциплините, които иска да посещава през семестъра. По време на първия етап студентът може да прави неограничени промени в избора си – да записва, да отписва, отново да записва, да сменя приоритетите. В избраните дисциплини по време на първия етап трябва да се включат всички дисциплини, които има вероятност да бъдат избрани окончателно. В никакъв случай, обаче, този избор не трябва да е "разточителен", тъй като на негова основа се взимат административни решения. Желателно е студентите да записват със статус "твърдо решил" тези дисциплини, които имат намерение да посещават, а със статус "колебая се" – тези дисциплини, които избират като резерва. СЛЕД КРАЯ НА I ЕТАП НЯМА ВЪЗМОЖНОСТ ЗА ЗАПИСВАНЕ НА НОВИ ИЗБИРАЕМИ ДИСЦИПЛИНИ!</p>
+                                <p>По време на II етап студентът има достъп само до дисциплините, които е избрал по време на първия етап (независимо от приоритета, с който са избрани), като може да променя приоритета на всяка отделна дисциплина или да я отпише, но не може да записва нови. През този етап студентът трябва да приведе приоритета на дисциплините, за които е взел окончателно решение да "слуша" през семестъра, в състояние твърдо решил (ако не е направил това още на първия етап). </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- search -->
+            <div class="control-group id-search">
+                <form action="" method="get" class="form-search">
+                    <div class="control-group inline">
+                        <div class="controls">
+
+                            <div class="input-prepend">
+                                <span class="add-on"><i class="icon-search"></i></span>
+                                <input type="text" class="span3" placeholder="Търсене на дисциплина" data-provide="typeahead" data-items="4" data-source="[&quot;Линукс ситемно администриране&quot;,&quot;КГМ&quot;,&quot;СДП&quot;,&quot;ООП&quot;,&quot;Анализ 1&quot;,&quot;Анализ 2&quot;,&quot;ЕАИ&quot;,&quot;Pyhon&quot;,&quot;МУИ&quot;]">
+                            </div>
+
+                            <div class="input-prepend">
+                                <span class="add-on"><i class="icon-list"></i></span>
+                                <select class="span3">
+                                    <option selected="selected" value="0">Избор на група</option>
+                                    <optgroup label="Групи">
+                                        <option value="1">Д - Дидактика</option>
+                                        <option value="2">И - Информатика</option>
+                                        <option value="3">КПр - Компютърен практикум</option>
+                                        <option value="4">М - Математика</option>
+                                        <option value="5">ПМ - Приложна математика</option>
+                                        <option value="6">С - Семинар</option>
+                                        <option value="7">Х - Хуманитарни</option>
+                                        <option value="8">ОКН - Основи на комп. науки</option>
+                                        <option value="9">ЯКН - Ядро на комп. науки</option>
+                                        <option value="10">Др - Други</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn">Търси</button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- message -->
+            <div class="bs-docs-example" id="id-list-5" style="display: none;">
+                <div class="alert alert-success fade in">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    Успешно записахте <strong>Анализ 1</strong>.
+                </div>
+            </div>
+
+            <!-- message -->
+            <div class="bs-docs-example" id="id-list-6" style="display: none;">
+                <div class="alert alert-heading fade in">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    Добавен сте на опашаката за <strong>Python</strong>.
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <!-- courses tab nav -->
+            <ul class="nav nav-tabs" id="coursesTab">
+                <li class="active"><a href="#not-enrolled">Незаписани</a></li>
+                <li><a href="#queued">На опашката</a></li>
+                <li><a href="#enrolled">Записани</a></li>
+            </ul>
+
+            <!-- courses tabs-->
+            <div class="tab-content">
+                <!-- not enrolled courses -->
+                <div class="tab-pane active" id="not-enrolled">
+
+                    <!-- list of not enrolled courses -->
+                    <table class="id-list table table-hover">
+                        <thead>
+                            <tr>
+                                <td>Дисциплина</td>
+                                <td>Преподавател</td>
+                                <td>Група</td>
+                                <td>ECTS</td>
+                                <td>Действие</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><a href="#info-linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">Анализ 1</a></td>
+                                <td>А. Александров</td>
+                                <td><abbr title="Математика">М</abbr></td>
+                                <td>6</td>
+                                <td>
+                                    <a href="#enroll-linux-sys-admin" role="button" class="btn btn-success" data-toggle="modal">Запиши</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">СДП</a></td>
+                                <td>Бъчваров</td>
+                                <td><abbr title="Основи на компютърните науки">ОКН</abbr></td>
+                                <td>7</td>
+                                <td>
+                                    <button class="btn btn-success" type="button">Запиши</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">ООП</a></td>
+                                <td>Бъчваров</td>
+                                <td><abbr title="Основи на компютърните науки">ОКН</abbr></td>
+                                <td>5</td>
+                                <td>
+                                    <button class="btn btn-success" type="button">Запиши</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">КГМ</a></td>
+                                <td>unnamed</td>
+                                <td><abbr title="Приложна математика">ПМ</abbr></td>
+                                <td>4</td>
+                                <td>
+                                    <button class="btn btn-success" type="button">Запиши</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">ЕАИ</a></td>
+                                <td>Соскова</td>
+                                <td><abbr title="Приложна математика">ПМ</abbr></td>
+                                <td>5</td>
+                                <td>
+                                    <button class="btn btn-success" type="button">Запиши</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">Анализ 2</a></td>
+                                <td>А. Александров</td>
+                                <td><abbr title="Приложна математика">ПМ</abbr></td>
+                                <td>6</td>
+                                <td>
+                                    <button class="btn btn-success" type="button">Запиши</button>
+                                </td>
+                            </tr>
+                            <tr class="error">
+                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">Python</a></td>
+                                <td>unnamed</td>
+                                <td><abbr title="Ядро на компютърните науки">ЯКН</abbr></td>
+                                <td>6</td>
+                                <td>
+                                    <button class="btn btn-warning" onclick="alertSuccess(6)" type="button">Нареди се на опашката</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <!-- queued courses -->
+                <div class="tab-pane" id="queued">
+
+                    <div class="container span3">
+                        <h3>Група 1</h3>
+                        <table class="id-list table table-hover">
+                            <thead>
+                                <tr>
+                                    <td>#</td>
+                                    <td>Дисциплина</td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="warning">
+                                    <td>1</td>
+                                    <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">МУИ</a></td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                                Избери действие
+                                                <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Премести нагоре</a></li>
+                                                <li><a href="#">Премести надолу</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#">Отпиши</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="warning">
+                                    <td>1</td>
+                                    <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">МУИ</a></td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                                Избери действие
+                                                <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Премести нагоре</a></li>
+                                                <li><a href="#">Премести надолу</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#">Отпиши</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="container span3">
+                        <h3>Група 2</h3>
+                        <table class="id-list table table-hover">
+                            <thead>
+                                <tr>
+                                    <td>#</td>
+                                    <td>Дисциплина</td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="warning">
+                                    <td>1</td>
+                                    <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">МУИ</a></td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                                Избери действие
+                                                <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Премести нагоре</a></li>
+                                                <li><a href="#">Премести надолу</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#">Отпиши</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="warning">
+                                    <td>1</td>
+                                    <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">МУИ</a></td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                                                Избери действие
+                                                <span class="caret"></span>
+                                            </a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Премести нагоре</a></li>
+                                                <li><a href="#">Премести надолу</a></li>
+                                                <li class="divider"></li>
+                                                <li><a href="#">Отпиши</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- enrolled courses -->
+                <div class="tab-pane" id="enrolled">
+
+                    <!-- list of not enrolled courses -->
+                    <table class="id-list table table-hover">
+                        <thead>
+                            <tr>
+                                <td>Дисциплина</td>
+                                <td>Преподавател</td>
+                                <td>Група</td>
+                                <td>ECTS</td>
+                                <td>Действие</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="success">
+                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">Линукс системно администриране</a></td>
+                                <td>М. Маринов</td>
+                                <td><abbr title="Ядро на компютърните науки">ЯКН</abbr></td>
+                                <td>7</td>
+                                <td>
+                                    <button class="btn btn-danger" type="button">Отпиши</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+
+            <!-- Modal - course info -->
+            <div id="info-linux-sys-admin" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="linux-sys-adminLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="myModalLabel">Линукс системно администриране</h3>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Лекотр: Н. Недялков, М. Маринов</strong></p>
+                    <h6>Кратка анотация на дисциплината</h6>
+                    <p>Предназначението на курса е да запознае сутудентите с основите на
+                        администрирането на сървъри, които работят с операционната система Линукс и
+                        приложния софтуер към нея. Линукс е модерна и относително нова операционна
+                        система и като такава има много части, които остават непознати за студентите. Целта
+                        на курса е те да се запознаят с основите на инсталиране, конфигуриране и поддръжка
+                        на съвременните Линукс дистрибуции, както и в дълбочина да научат начина на работа
+                        на тези системи. В курса ще бъдат демонстрирани и обяснени дистрибуциите RedHat
+                        Enterprise Linux 4, Fedora Core 6, Debian, Ubuntu и Slackware. Материалът е придружен
+                        от много демонстрации на конфигурации, използвани в реална среда.</p>
+                    <h6>Предварителни изисквания към студентите</h6>
+                    <p>Препоръчително (но не задължително) е студентите, желаещи да посещават този
+                        курс, да са преминали курса по Операционни системи.</p>
+                    <h6>Форма на проверка на знанията и уменията и начин на формиране на оценката по дисциплината</h6>
+                    <p>Изпитът ще се състои от два теста и задължителен проект. Тестовете
+                        ще включват по 30 въпроса върху материала, обясняван по време на
+                        занятията. Всеки въпрос от теста ще има точно 1 верен отговор
+                        измежду изброените. При вярно отбелязан отговор студентът печели 1
+                        точка за дадения въпрос, а в противен случай не печели точка.
+                        Съгласно тази система за оценяване от един тест могат да се спечелят
+                        до 30 точки, а от двата теста общо - до 60 точки.
+                        2. Проектът е задължителен, като ще се даде възможност на студента да
+                        избира между софтуерна разработка и писмена разработка по
+                        предварително зададена тема. Темите най-вероятно няма да съвпадат
+                        с преподавани по време на курса и ще изискват допълнителна и по-
+                        подробна информация относно поставения проблем. Проектът носи 40
+                        точки.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Затвори</button>
+                </div>
+            </div>
+
+            <script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
+
+      <!-- Wrapping the Recaptcha create method in a javascript function -->
+      <script type="text/javascript">
+         function showRecaptcha(element) {
+           Recaptcha.create("your_public_key", element, {
+             theme: "red",
+             callback: Recaptcha.focus_response_field});
+         }
+      </script>
+            
+            <!-- Modal - course enroll -->
+            <div id="enroll-linux-sys-admin" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="linux-sys-adminLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="myModalLabel">Записване за курс</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Записване за курса <strong>Линукс системно администриране</strong></p>
+                    TODO reCAPTCHA
+                    <div id="recaptcha_div"></div>
+
+      <input type="button" value="Show reCAPTCHA" onclick="showRecaptcha('recaptcha_div');"></input>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn">Отказ</a>
+                    <a href="#" class="btn btn-success">Запиши</a>
+                </div>
+            </div>
+
+
+            <footer>
+                <p>&copy; HackFMI 2013</p>
+            </footer>
+
+        </div> <!-- container-body -->
+
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/user-courses.js"></script>
+
+    </body>
+</html>
