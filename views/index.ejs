@@ -131,7 +131,11 @@
                         <% for (var i = 0; i < courses.length; ++i) { %>
                           <tr>
                             <td><a href="#" role="button" class="btn btn-link" data-toggle="modal"><%= courses[i].name %></a></td>
-                            <td>А. Александров</td>
+                            <% if (courses[i]._teacher) { %>
+                                <td><%= courses[i]._teacher.name %></td>
+                            <% } else { %>
+                                <td>НЯМА</td>
+                            <% } %>
                             <td><abbr title="Математика"><%= courses[i].group %></abbr></td>
                             <td><%= courses[i].ects %></td>
                             <td>
@@ -384,7 +388,7 @@
                 </div>
             </div>
 
-            
+
             <!-- reCAPTCHA -->
             <div style="display: none;">
                 <div id="originalReCAPTCHA">
@@ -397,7 +401,7 @@
                     </noscript>
                 </div>
             </div>
-            
+
             <!-- Modal - course enroll -->
             <form action="" method="post">
                 <div id="enroll-linux-sys-admin" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="linux-sys-adminLabel" aria-hidden="true">
@@ -456,7 +460,7 @@
                     </div>
                 </div>
             </form>
-            
+
             <footer>
                 <p>&copy; HackFMI 2013</p>
             </footer>

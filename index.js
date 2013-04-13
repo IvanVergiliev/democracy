@@ -71,10 +71,19 @@ app.get('/logout', function(req, res) {
 });
 
 app.get('/', function(req, res) {
-  Course.find(function(err, courses) {
-    err && console.log(err);
-    res.render('index', {courses: courses, user: req.session.user});
-  });
+  Course.find()
+    .populate('_teacher')
+    .exec(function(err, courses) {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      console.log(courses.toString());
+      res.render('index', {
+        courses: courses,
+        user: req.session.user
+      });
+    });
 });
 
 app.get('/enrollments', function(req, res) {
