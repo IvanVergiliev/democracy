@@ -36,7 +36,12 @@ $('body').on('click', '.enroll', function () {
       courseId: id
     },
     success: function (json) {
-      console.log('wtf');
+      if (json.result) {
+        $('.enrollResult').html('Готово!');
+      } else {
+        $('.enrollResult').html(json.msg);
+      }
+      $('.enrollResult').show();
     }
   });
 });

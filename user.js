@@ -20,7 +20,7 @@ userSchema.methods.maxSimultaneous = function () {
 
 userSchema.methods.canAddGroup = function (maxSize, cb) {
   var user = this;
-  var groups = Group.find({_id: this._id}, function (err, groups) {
+  var groups = Group.find({_user: this._id}, function (err, groups) {
     console.log('groups: ');
     console.log(groups);
     // TODO: can be replaced with a MongoDB aggregate.
