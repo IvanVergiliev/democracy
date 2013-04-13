@@ -18,7 +18,7 @@ groupSchema.maethods.fix = function (cb) {
       var count = enrollments.length();
       if (count > this.maxEntries) {
         var enrollment = enrollments[0];
-        for (int i = 1; i < enrollments.length(); i++) {
+        for (var i = 1; i < enrollments.length; i++) {
           if (enrollments[i]._queryEntry.priority < enrollment.priority) {
             enrolment = enrollments[i]._queryEntry;
           }
