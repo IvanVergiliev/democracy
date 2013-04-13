@@ -9,13 +9,13 @@ var groupSchema = new mongoose.Schema({
   }
 });
 
-groupSchema.maethods.fix = function (cb) {
+groupSchema.methods.fix = function (cb) {
   Enrollment
     .find({_group: this._id})
     .exists('occupation', false)
     .populate("_queueEntry")
     .exec(function(err, enrollments) {
-      var count = enrollments.length();
+      var count = enrollments.length;
       if (count > this.maxEntries) {
         var enrollment = enrollments[0];
         for (var i = 1; i < enrollments.length; i++) {
