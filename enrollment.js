@@ -3,8 +3,14 @@ var mongoose = require('mongoose');
 var enrollmentSchema = new mongoose.Schema({
   startDate: Date,
   endDate: Date,
-  _user: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-  _course: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }]
+  _user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  },
+  _course: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Course'
+  }
 });
 
 enrollmentSchema.statics.forUser = function (user, cb) {
