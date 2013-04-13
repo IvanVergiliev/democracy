@@ -10,6 +10,7 @@ db.on('error', function(err) {
 });
 
 var User = require('./user.js');
+var Course = require('./course.js');
 
 var app = express();
 
@@ -20,7 +21,14 @@ app.set('view engine', 'ejs');
 app.use(express.session({secret: 'gdfgfdgu8934t9ghervorehg', store: new MemoryStore()}));
 
 app.get('/', function(req, res) {
-  res.end(req.session.user.name);
+  Course.find(function(err, courses) {
+    err && console.log(err);
+    for (var i = 0; i < courses.length; ++i) {
+      res.write(courses[i].name);
+      res.write('\n');
+    }
+    res.end();
+  });
 });
 
 app.get('/login', function(req, res) {
