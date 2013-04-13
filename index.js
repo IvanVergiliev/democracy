@@ -103,7 +103,7 @@ app.get('/enrollments', function(req, res) {
 });
 
 app.get('/addCourse', function(req, res){
-  res.render('add-course');
+  res.render('add_course');
 });
 
 app.post('/addCourse', function(req, res){
