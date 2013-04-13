@@ -17,3 +17,11 @@ $('.showDescription').click(function() {
     $('#info-linux-sys-admin').modal('show');
   });
 });
+
+$('.showEnroll').click(function() {
+  $.get('templates/enroll.ejs', function (txt) {
+    $('.modal').html(txt);
+    $('#firstReCAPTCHA').html($('#originalReCAPTCHA').clone(true, true));
+    $('#info-linux-sys-admin').modal('show');
+  });
+});

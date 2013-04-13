@@ -140,65 +140,11 @@
                             <td><abbr title="Математика"><%= courses[i].group %></abbr></td>
                             <td><%= courses[i].ects %></td>
                             <td>
-                                <a href="#enroll-linux-sys-admin" role="button" class="btn btn-success" data-toggle="modal">Запиши</a>
+                                <a href="#enroll-linux-sys-admin" role="button" class="btn btn-success showEnroll" data-toggle="modal">Запиши</a>
                             </td>
                           </tr>
                         <% } %>
                         <tr><td>// Hardcoded stuff starts here.</td></tr>
-                            <tr>
-                                <td><a href="#info-linux-sys-admin" role="button" class="btn btn-link showDescription" data-toggle="modal">Анализ 1</a></td>
-                                <td>А. Александров</td>
-                                <td><abbr title="Математика">М</abbr></td>
-                                <td>6</td>
-                                <td>
-                                    <a href="#enroll-linux-sys-admin" role="button" class="btn btn-success" data-toggle="modal">Запиши</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">СДП</a></td>
-                                <td>Бъчваров</td>
-                                <td><abbr title="Основи на компютърните науки">ОКН</abbr></td>
-                                <td>7</td>
-                                <td>
-                                    <button class="btn btn-success" type="button">Запиши</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">ООП</a></td>
-                                <td>Бъчваров</td>
-                                <td><abbr title="Основи на компютърните науки">ОКН</abbr></td>
-                                <td>5</td>
-                                <td>
-                                    <button class="btn btn-success" type="button">Запиши</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">КГМ</a></td>
-                                <td>unnamed</td>
-                                <td><abbr title="Приложна математика">ПМ</abbr></td>
-                                <td>4</td>
-                                <td>
-                                    <button class="btn btn-success" type="button">Запиши</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">ЕАИ</a></td>
-                                <td>Соскова</td>
-                                <td><abbr title="Приложна математика">ПМ</abbr></td>
-                                <td>5</td>
-                                <td>
-                                    <button class="btn btn-success" type="button">Запиши</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">Анализ 2</a></td>
-                                <td>А. Александров</td>
-                                <td><abbr title="Приложна математика">ПМ</abbr></td>
-                                <td>6</td>
-                                <td>
-                                    <button class="btn btn-success" type="button">Запиши</button>
-                                </td>
-                            </tr>
                             <tr class="error">
                                 <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">Python</a></td>
                                 <td>unnamed</td>
@@ -352,7 +298,6 @@
             <div id="info-linux-sys-admin" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="linux-sys-adminLabel" aria-hidden="true">
             </div>
 
-
             <!-- reCAPTCHA -->
             <div style="display: none;">
                 <div id="originalReCAPTCHA">
@@ -366,28 +311,6 @@
                 </div>
             </div>
 
-            <!-- Modal - course enroll -->
-            <form action="" method="post">
-                <div id="enroll-linux-sys-admin" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="linux-sys-adminLabel" aria-hidden="true">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h3 id="myModalLabel">Записване за курс</h3>
-                    </div>
-
-
-                    <div class="modal-body">
-                        <p>Записване за курса <strong>Линукс системно администриране</strong></p>
-
-                        <!-- reCAPTCHA -->
-                        <div id="firstReCAPTCHA"></div>
-                    </div>
-                    <div class="modal-footer">
-                        <a href="#" class="btn">Отказ</a>
-                        <a href="#" class="btn btn-success">Запиши</a>
-                    </div>
-
-                </div>
-            </form>
 
             <!-- Modal - course queued -->
             <form action="" method="post">
