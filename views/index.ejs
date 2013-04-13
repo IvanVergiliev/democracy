@@ -149,69 +149,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td><a href="#info-linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">Анализ 1</a></td>
-                                <td>А. Александров</td>
-                                <td><abbr title="Математика">М</abbr></td>
-                                <td>6</td>
-                                <td>
-                                    <a href="#enroll-linux-sys-admin" role="button" class="btn btn-success" data-toggle="modal">Запиши</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">СДП</a></td>
-                                <td>Бъчваров</td>
-                                <td><abbr title="Основи на компютърните науки">ОКН</abbr></td>
-                                <td>7</td>
-                                <td>
-                                    <button class="btn btn-success" type="button">Запиши</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">ООП</a></td>
-                                <td>Бъчваров</td>
-                                <td><abbr title="Основи на компютърните науки">ОКН</abbr></td>
-                                <td>5</td>
-                                <td>
-                                    <button class="btn btn-success" type="button">Запиши</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">КГМ</a></td>
-                                <td>unnamed</td>
-                                <td><abbr title="Приложна математика">ПМ</abbr></td>
-                                <td>4</td>
-                                <td>
-                                    <button class="btn btn-success" type="button">Запиши</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">ЕАИ</a></td>
-                                <td>Соскова</td>
-                                <td><abbr title="Приложна математика">ПМ</abbr></td>
-                                <td>5</td>
-                                <td>
-                                    <button class="btn btn-success" type="button">Запиши</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">Анализ 2</a></td>
-                                <td>А. Александров</td>
-                                <td><abbr title="Приложна математика">ПМ</abbr></td>
-                                <td>6</td>
-                                <td>
-                                    <button class="btn btn-success" type="button">Запиши</button>
-                                </td>
-                            </tr>
-                            <tr class="error">
-                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">Python</a></td>
-                                <td>unnamed</td>
-                                <td><abbr title="Ядро на компютърните науки">ЯКН</abbr></td>
-                                <td>6</td>
-                                <td>
-                                    <button class="btn btn-warning" onclick="alertSuccess(6)" type="button">Нареди се на опашката</button>
-                                </td>
-                            </tr>
+                        <% for (var i = 0; i < courses.length; ++i) { %>
+                          <tr>
+                            <td><a href="#" role="button" class="btn btn-link" data-toggle="modal"><%= courses[i].name %></a></td>
+                            <td>А. Александров</td>
+                            <td><abbr title="Математика"><%= courses[i].group %></abbr></td>
+                            <td><%= courses[i].ects %></td>
+                            <td>
+                                <a href="#enroll-linux-sys-admin" role="button" class="btn btn-success" data-toggle="modal">Запиши</a>
+                            </td>
+                          </tr>
+                        <% } %>
                         </tbody>
                     </table>
 

@@ -23,11 +23,7 @@ app.use(express.session({secret: 'gdfgfdgu8934t9ghervorehg', store: new MemorySt
 app.get('/', function(req, res) {
   Course.find(function(err, courses) {
     err && console.log(err);
-    for (var i = 0; i < courses.length; ++i) {
-      res.write(courses[i].name);
-      res.write('\n');
-    }
-    res.end();
+    res.render('index', {courses: courses});
   });
 });
 
