@@ -23,11 +23,16 @@ app.use(express.bodyParser());
 app.set('view engine', 'ejs');
 app.use(express.session({secret: 'gdfgfdgu8934t9ghervorehg', store: new MemoryStore()}));
 
-app.get('/', function(req, res) {
-  Course.find(function(err, courses) {
-    err && console.log(err);
-    res.render('index', {courses: courses});
-  });
+app.use(function(req, res, next) {
+  if (req.path == '/login' || req.path == '/register') {
+    next();
+    return;
+  }
+  if (!req.session.user) {
+    res.redirect('/login');
+  } else {
+    next();
+  }
 });
 
 app.get('/login', function(req, res) {
@@ -56,6 +61,18 @@ app.post('/register', function(req, res) {
   user.save(function(err, user) {
     req.session.user = user;
     res.redirect('/');
+  });
+});
+
+app.get('/logout', function(req, res) {
+  req.session = null;
+  res.redirect('/login');
+});
+
+app.get('/', function(req, res) {
+  Course.find(function(err, courses) {
+    err && console.log(err);
+    res.render('index', {courses: courses, user: req.session.user});
   });
 });
 
