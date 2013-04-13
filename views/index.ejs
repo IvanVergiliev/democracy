@@ -160,6 +160,70 @@
                             </td>
                           </tr>
                         <% } %>
+// Hardcoded stuff starts here.
+                            <tr>
+                                <td><a href="#info-linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">Анализ 1</a></td>
+                                <td>А. Александров</td>
+                                <td><abbr title="Математика">М</abbr></td>
+                                <td>6</td>
+                                <td>
+                                    <a href="#enroll-linux-sys-admin" role="button" class="btn btn-success" data-toggle="modal">Запиши</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">СДП</a></td>
+                                <td>Бъчваров</td>
+                                <td><abbr title="Основи на компютърните науки">ОКН</abbr></td>
+                                <td>7</td>
+                                <td>
+                                    <button class="btn btn-success" type="button">Запиши</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">ООП</a></td>
+                                <td>Бъчваров</td>
+                                <td><abbr title="Основи на компютърните науки">ОКН</abbr></td>
+                                <td>5</td>
+                                <td>
+                                    <button class="btn btn-success" type="button">Запиши</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">КГМ</a></td>
+                                <td>unnamed</td>
+                                <td><abbr title="Приложна математика">ПМ</abbr></td>
+                                <td>4</td>
+                                <td>
+                                    <button class="btn btn-success" type="button">Запиши</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">ЕАИ</a></td>
+                                <td>Соскова</td>
+                                <td><abbr title="Приложна математика">ПМ</abbr></td>
+                                <td>5</td>
+                                <td>
+                                    <button class="btn btn-success" type="button">Запиши</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">Анализ 2</a></td>
+                                <td>А. Александров</td>
+                                <td><abbr title="Приложна математика">ПМ</abbr></td>
+                                <td>6</td>
+                                <td>
+                                    <button class="btn btn-success" type="button">Запиши</button>
+                                </td>
+                            </tr>
+                            <tr class="error">
+                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">Python</a></td>
+                                <td>unnamed</td>
+                                <td><abbr title="Ядро на компютърните науки">ЯКН</abbr></td>
+                                <td>6</td>
+                                <td>
+                                    <a href="#queued-linux-sys-admin" role="button" class="btn btn-warning" data-toggle="modal">Нареди се на опашката</a>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
 
@@ -300,9 +364,6 @@
                 </div>
             </div>
 
-
-
-
             <!-- Modal - course info -->
             <div id="info-linux-sys-admin" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="linux-sys-adminLabel" aria-hidden="true">
                 <div class="modal-header">
@@ -344,37 +405,79 @@
                 </div>
             </div>
 
-            <script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
-
-      <!-- Wrapping the Recaptcha create method in a javascript function -->
-      <script type="text/javascript">
-         function showRecaptcha(element) {
-           Recaptcha.create("your_public_key", element, {
-             theme: "red",
-             callback: Recaptcha.focus_response_field});
-         }
-      </script>
             
-            <!-- Modal - course enroll -->
-            <div id="enroll-linux-sys-admin" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="linux-sys-adminLabel" aria-hidden="true">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 id="myModalLabel">Записване за курс</h3>
-                </div>
-                <div class="modal-body">
-                    <p>Записване за курса <strong>Линукс системно администриране</strong></p>
-                    TODO reCAPTCHA
-                    <div id="recaptcha_div"></div>
-
-      <input type="button" value="Show reCAPTCHA" onclick="showRecaptcha('recaptcha_div');"></input>
-                </div>
-                <div class="modal-footer">
-                    <a href="#" class="btn">Отказ</a>
-                    <a href="#" class="btn btn-success">Запиши</a>
+            <!-- reCAPTCHA -->
+            <div style="display: none;">
+                <div id="originalReCAPTCHA">
+                    <script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=6LdJ198SAAAAAKglPhg3C7ZVS0qaARtDMZl6-r2V"></script>
+                    <noscript>
+                    <iframe src="http://www.google.com/recaptcha/api/noscript?k=6LdJ198SAAAAAKglPhg3C7ZVS0qaARtDMZl6-r2V" height="300" width="500" frameborder="0"></iframe><br>
+                    <textarea name="recaptcha_challenge_field" rows="3" cols="40">
+                    </textarea>
+                    <input type="hidden" name="recaptcha_response_field" value="manual_challenge">
+                    </noscript>
                 </div>
             </div>
+            
+            <!-- Modal - course enroll -->
+            <form action="" method="post">
+                <div id="enroll-linux-sys-admin" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="linux-sys-adminLabel" aria-hidden="true">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3 id="myModalLabel">Записване за курс</h3>
+                    </div>
 
 
+                    <div class="modal-body">
+                        <p>Записване за курса <strong>Линукс системно администриране</strong></p>
+
+                        <!-- reCAPTCHA -->
+                        <div id="firstReCAPTCHA"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn">Отказ</a>
+                        <a href="#" class="btn btn-success">Запиши</a>
+                    </div>
+
+                </div>
+            </form>
+
+            <!-- Modal - course queued -->
+            <form action="" method="post">
+                <div id="queued-linux-sys-admin" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="linux-sys-adminLabel" aria-hidden="true">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h3 id="myModalLabel">Записване в опашката за курс</h3>
+                    </div>
+
+
+                    <div class="modal-body">
+                        <p>За да се запишете в опашката за <strong>Python</strong>, добавете го в някоя група или саздадете нова.</p>
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-list"></i></span>
+                            <select class="span3">
+                                <option selected="selected" value="0">Избор на група</option>
+                                <optgroup label="Групи">
+                                    <option value="1">Група 1</option>
+                                    <option value="2">Група 2</option>
+                                </optgroup>
+                            </select>
+                        </div>
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-pencil"></i></span>
+                            <input type="text" class="span3" placeholder="Име на нова група" data-provide="typeahead" data-items="4" data-source="[&quot;Линукс ситемно администриране&quot;,&quot;КГМ&quot;,&quot;СДП&quot;,&quot;ООП&quot;,&quot;Анализ 1&quot;,&quot;Анализ 2&quot;,&quot;ЕАИ&quot;,&quot;Pyhon&quot;,&quot;МУИ&quot;]">
+                        </div>
+
+                        <!-- reCAPTCHA -->
+                        <div id="secondReCAPTCHA"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="btn">Отказ</a>
+                        <a href="#" class="btn btn-warning">Нареди се на опашката</a>
+                    </div>
+                </div>
+            </form>
+            
             <footer>
                 <p>&copy; HackFMI 2013</p>
             </footer>
@@ -384,6 +487,5 @@
         <script src="http://code.jquery.com/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/user-courses.js"></script>
-
     </body>
 </html>
