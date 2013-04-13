@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Изборни дисциплини ФМИ - Добавяне на курс</title>
+    <script type="text/javascript" src="/js/jquery.js"></script>
+  </head>
+  <body>
+    <% if (typeof(error) !== 'undefined') { %>
+      <%= error %>
+    <% } %>
+    <form action="addCourse" method="post">
+      <p>
+        <input type="text" name="name" placeholder="Име на курс">
+      </p>
+      <p>
+        <input type="text" name="ects" placeholder="ECTS">
+      </p>
+      <p>
+        <input type="text" name="group" placeholder="Група">
+      </p>
+      <p>
+        <input type="text" name="limit" placeholder="Лимит">
+      </p>
+      <p>
+        Описание: <input type="text" name="description">
+      </p>
+      <input type="submit">
+    </form>
+  </body>
+</html>
