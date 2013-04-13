@@ -4,6 +4,7 @@
     "ejs": "0.8.3",
     "mongodb": ">= 0",
     "mongoose": "3.6.4",
-    "async": "0.2.7"
+    "async": "0.2.7",
+    "connect": "2.7.5"
   }
 }
