@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var queueEntrySchema = new mongoose.Schema({
   priority: Number,
   created: Date,
+  valid: Boolean,
   _course: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Course'

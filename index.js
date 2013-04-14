@@ -216,4 +216,41 @@ app.get('/unenroll/:userId/:courseId', function(req, res) {
   });
 });
 
+app.get('/dequeue/:courseId', function(req, res) {
+  var userId = req.session.user._id;
+  var courseId = req.params.courseId;
+
+  Group.getQueueEntry(userId, courseId, function (queueEntry) {
+    queueEntry.valid = false;
+    queueEntry.save(function() {
+      res.json(queueEntry);
+    });
+  });
+});
+
+app.get('/enqueue/:courseId', function(req, res) {
+  var userId = req.session.user._id;
+  var courseId = req.params.courseId;
+
+  User.findOne({_id: userId}, function(err, user) {
+    user.canAddGroup(1, function(ok) {
+      if (ok) {
+        user.addGroup(null, 1, function(err, group) {
+          group.addQueueEntry(courseId, function(err, queueEntry) {
+            res.json({
+              result: true,
+              msg: 'Записан си за опашката'
+            });
+          });
+        });
+      } else {
+        res.json({
+          result: false,
+          msg: 'Нямаш право на повече изборни'
+        });
+      }
+    });
+  });
+});
+
 app.listen(3000);

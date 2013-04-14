@@ -1,6 +1,7 @@
 var async = require('async');
 var mongoose = require('mongoose');
 var Enrollment = require('./enrollment.js');
+var QueueEntry = require('./queue_entry.js');
 
 var groupSchema = new mongoose.Schema({
   name: String,
@@ -63,6 +64,17 @@ groupSchema.methods.addEnrollment = function (courseId, cb) {
   enrollment.save(cb);
 };
 
+groupSchema.methods.addQueueEntry = function(courseId, cb) {
+  var queueEntry = new QueueEntry({
+    priority: 1,
+    created: Date.now(),
+    valid: true,
+    _group: this._id,
+    _course: courseId
+  });
+  queueEntry.save(cb);
+}
+
 groupSchema.methods.getActiveEnrollment_SingleGroup = function (courseId, cb) {
   var group = this;
   console.log('group is ');
@@ -108,7 +120,29 @@ groupSchema.statics.getActiveEnrollment = function (user, courseId, cb) {
   });
 };
 
-var Group = mongoose.model('Group', groupSchema);
+groupSchema.methods.getQueueEntry_SingleGoup = function (courseId, cb) {
+  var group = this;
+  QueueEntry.findOne({_course: courseId, _group: group._id},
+    function(err, result) {
+      cb(result);
+  });
+};
 
+groupSchema.statics.getQueueEntry = function (userId, courseId, cb) {
+  Group.find({_user: userId}, function (err, groups) {
+    async.reduce(groups, null, function (memo, item, callback) {
+      item.getQueueEntry_SingleGoup(courseId, function (result) {
+        if (result != null) {
+          memo = result;
+        }
+        callback(null, memo);
+      });
+    }, function (err, result) {
+      cb(result);
+    });
+  });
+};
+
+var Group = mongoose.model('Group', groupSchema);
 
 module.exports = Group;
