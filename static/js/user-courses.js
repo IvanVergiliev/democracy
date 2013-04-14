@@ -64,6 +64,20 @@ $('body').on('click', '.enroll', function () {
   });
 });
 
+$('body').on('click', '.enqueue', function () {
+  var id = this.dataset.id;
+  $.ajax({
+    type: 'get',
+    url: 'enqueue/' + id,
+    success: function (json) {
+      if (json.result) {
+        $('a[data-id=' + id + '].enqueue').hide();
+        $('a[data-id=' + id + '].dequeue').show();
+      }
+    }
+  });
+});
+
 var filterRows = function (query) {
   $('.showDescription').each(function (index, item) {
     if (item.innerHTML.indexOf(query) == -1) {

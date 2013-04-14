@@ -79,7 +79,7 @@ groupSchema.methods.getActiveEnrollment_SingleGroup = function (courseId, cb) {
   var group = this;
   Enrollment.forGroup(this, function (err, enrollments) {
     async.reduce(enrollments, null, function (memo, item, callback) {
-      if (!item.endDate && item._course._id == courseId) {
+      if (!item.endDate && item._course._id.toString() == courseId) {
         memo = item;
       }
       callback(null, memo);

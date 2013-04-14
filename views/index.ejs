@@ -140,8 +140,10 @@
                             <td><abbr title="Математика"><%= courses[i].group %></abbr></td>
                             <td><%= courses[i].ects %></td>
                             <td>
-                                <a href="#" role="button" class="btn btn-danger unenroll" data-toggle="modal" data-id="<%= courses[i]._id %>" style="display: <%= (statuses[i] == 'Записан') ? '' : 'none' %>">Отпиши</a>
-                                <a href="#enroll-linux-sys-admin" role="button" class="btn btn-success showEnroll" data-toggle="modal" data-id="<%= courses[i]._id %>" style="display: <%= statuses[i] == 'not enrolled' ? '' : 'none' %>">Запиши</a>
+                                <a href="#" role="button" class="btn btn-danger unenroll" data-id="<%= courses[i]._id %>" style="display: <%= (statuses[i] == 'Enrolled') ? '' : 'none' %>">Отпиши</a>
+                                <a href="#enroll-linux-sys-admin" role="button" class="btn btn-success showEnroll" data-toggle="modal" data-id="<%= courses[i]._id %>" style="display: <%= statuses[i] == 'Free positions' ? '' : 'none' %>">Запиши</a>
+                                <a href="#" role="button" class="btn btn-warning enqueue" data-id="<%= courses[i]._id %>" style="display: <%= statuses[i] == 'Full' ? '' : 'none' %>">Нареди се на опашката</a>
+                                <a href="#" role="button" class="btn btn-warning dequeue" disabled data-id="<%= courses[i]._id %>" style="display: <%= statuses[i] == 'You are in queue' ? '' : 'none' %>">В опашката си</a>
                             </td>
                           </tr>
                         <% } %>
