@@ -169,7 +169,19 @@ app.get('/getActiveEnrollment/:courseId', function (req, res) {
   var userId = req.session.user._id;
   Group.getActiveEnrollment(req.session.user, req.params.courseId, function (enrollment) {
     res.json(enrollment);
-  })
+  });
+});
+
+app.get('/getState/:courseId', function (req, res) {
+  var userId = req.session.user._id;
+  var courseId = req.params.courseId;
+  Course.findOne({_id: courseId}, function (err, course) {
+    console.log('course is ');
+    console.log(course);
+    course.getState(userId, function (msg) {
+      res.end(msg);
+    });
+  });
 });
 
 app.listen(3000);
