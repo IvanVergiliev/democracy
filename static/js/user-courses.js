@@ -109,3 +109,18 @@ var filterRows = function (query) {
 $('#filter').keyup(function () {
   filterRows(this.value);
 });
+
+$(function () {
+  var currentUserId = document.body.dataset.id;
+  var socket = io.connect();
+  socket.emit('setUser', currentUserId);
+  socket.on('stateChanged', function (userId, courseId, msg) {
+    if (userId == currentUserId) {
+      if (msg == 'Full') {
+        $('[data-id=' + courseId + '].showEnroll').hide();
+        $('[data-id=' + courseId + '].enqueue').show();
+      }
+    }
+    console.log(arguments);
+  });
+});

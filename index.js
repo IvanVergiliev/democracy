@@ -3,6 +3,9 @@ var async = require('async');
 var MemoryStore = require('connect').session.MemoryStore;
 var mongoose = require('mongoose');
 var actions = require('./actions.js');
+var events = require('events');
+
+var eventEmitter = new events.EventEmitter();
 
 mongoose.connect('mongodb://164.138.216.139/hackfmi');
 
@@ -86,7 +89,6 @@ app.get('/', function(req, res) {
           console.log(err);
           return;
         }
-        console.log(courses.toString());
         res.render('index', {
           courses: courses,
           statuses: statuses,
@@ -152,15 +154,13 @@ app.get('/teacherCourses', function(req, res) {
 app.post('/enroll', function(req, res) {
   var data = req.body;
   var userId = req.session.user._id;
-  console.log('course id is ');
-  console.log(data.courseId);
   var user = User.findOne({_id: userId}, function (err, user) {
-    console.log(user);
     user.canAddGroup(1, function (ok) {
       // TODO: Prone to TOCTOU attacks - MUST be fix if going to production.
       if (ok) {
         user.addGroup(null, 1, function (err, group) {
           group.addEnrollment(data.courseId, function (err, enrollment) {
+            eventEmitter.emit('stateChanged', data.courseId);
             res.json({
               result: true
             });
@@ -189,8 +189,6 @@ app.get('/getState/:courseId', function (req, res) {
   var userId = req.session.user._id;
   var courseId = req.params.courseId;
   Course.findOne({_id: courseId}, function (err, course) {
-    console.log('course is ');
-    console.log(course);
     course.getState(userId, function (msg) {
       res.end(msg);
     });
@@ -300,4 +298,31 @@ app.get('/groups', function (req, res) {
   });
 });
 
-app.listen(3000);
+var http = require('http');
+var server = http.createServer(app);
+
+var io = require('socket.io').listen(server);
+
+server.listen(3000);
+
+io.sockets.on('connection', function (socket) {
+  var userId = null;
+
+  socket.on('setUser', function (id) {
+    console.log('setting user ' + id);
+    userId = id;
+  });
+
+  eventEmitter.on('stateChanged', function (courseId) {
+    if (!userId) {
+      return;
+    }
+    Course.findOne({_id: courseId}, function (err, course) {
+      console.log('course is ');
+      console.log(course);
+      course.getState(userId, function (msg) {
+        socket.emit('stateChanged', userId, courseId, msg);
+      });
+    });
+  });
+});

@@ -18,17 +18,11 @@ var courseSchema = new mongoose.Schema({
 courseSchema.methods.getState = function (userId, cb) {
   var course = this;
   User.findOne({_id: userId}, function (err, user) {
-    console.log('user is ');
-    console.log(user);
     Group.getActiveEnrollment(user, course._id, function (res) {
-      console.log('res(active enrollment) is ');
-      console.log(res);
       if (res) {
         cb('Enrolled');
       } else {
         Group.getQueueEntry(userId, course._id, function (res) {
-          console.log('res(queue entry) is ');
-          console.log(res);
           if (res) {
             cb('You are in queue');
           } else {

@@ -8,8 +8,9 @@
         <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
         <link href="css/user-courses.css" rel="stylesheet">
         <script src="js/ejs.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
     </head>
-    <body>
+    <body data-id="<%= user._id %>">
         <!-- Nav -->
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
