@@ -33,7 +33,6 @@ var addTeacherMethods = function (app) {
         async.map(enrollments, function (enrollment, cb) {
           Group.findOne({id: enrollment._group}, function (err, group) {
             err && console.log(err);
-            !group && console.log("NULL GROUP PASSED!");
             User.findOne({id: group._user}, function (err, user) {
               cb(null, user);
             });

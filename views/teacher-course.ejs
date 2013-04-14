@@ -63,30 +63,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="success">
-                        <td>30455</td>
-                        <td>Петър Петров</td>
-                        <td>2 април 2013, 9:55</td>
-                        <td>
+                    <% for (var i = 0; i < students.length; i += 1) { %>
+                        <tr class="success">
+                          <td><%= ~~(Math.random() * 1000 + 80000) %></td>
+                          <td><%= students[i].name %></td>
+                          <td>2 април 2013, 9:55</td>
+                          <td>
                             <button class="btn btn-danger" type="button">Отпиши</button>
-                        </td>
-                    </tr>
-                    <tr class="success">
-                        <td>30556</td>
-                        <td>Петър Петров</td>
-                        <td>2 април 2013, 10:11</td>
-                        <td>
-                            <button class="btn btn-danger" type="button">Отпиши</button>
-                        </td>
-                    </tr>
-                    <tr class="success">
-                        <td>30262</td>
-                        <td>Петър Петров</td>
-                        <td>2 април 2013, 9:53</td>
-                        <td>
-                            <button class="btn btn-danger" type="button">Отпиши</button>
-                        </td>
-                    </tr>
+                          </td>
+                        </tr>
+                    <% } %>
                     <tr class="warning">
                         <td>30111</td>
                         <td>Петър Петров</td>
