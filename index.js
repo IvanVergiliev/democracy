@@ -2,6 +2,7 @@ var express = require('express');
 var async = require('async');
 var MemoryStore = require('connect').session.MemoryStore;
 var mongoose = require('mongoose');
+var actions = require('./actions.js');
 
 mongoose.connect('mongodb://164.138.216.139/hackfmi');
 
@@ -199,10 +200,11 @@ var unenroll = function (enrollment, cb) {
   Group.findOne({_id: enrollment._group}, function(err, group) {
     enrollment.endDate = Date.now();
     var fixEnrollment = function() {
-      enrollment.save(function(err) {
-        group.fix(cb);
+      enrollment.save(function() {
+        actions.afterUnregistrationFromCourse(enrollment._course, cb);
       });
     };
+
     if (!group.name) {
       group.maxEntries = 0;
       group.save(fixEnrollment);
