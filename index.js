@@ -194,9 +194,18 @@ app.get('/getState/:courseId', function (req, res) {
 
 var unenroll = function (enrollment, cb) {
   Group.findOne({_id: enrollment._group}, function(err, group) {
-    enrollment.remove(function (err) {
-      group.fix(cb);
-    });
+    enrollment.endDate = Date.now();
+    var fixEnrollment = function() {
+      enrollment.save(function(err) {
+        group.fix(cb);
+      });
+    };
+    if (!group.name) {
+      group.maxEntries = 0;
+      group.save(fixEnrollment);
+    } else {
+      fixEnrollment();
+    }
   });
 }
 
