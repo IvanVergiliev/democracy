@@ -14,7 +14,7 @@ var groupSchema = new mongoose.Schema({
 groupSchema.methods.fix = function (cb) {
   Enrollment
     .find({_group: this._id})
-    .exists('occupation', false)
+    .exists('endDate', false)
     .populate("_queueEntry")
     .exec(function(err, enrollments) {
       var count = enrollments.length;
@@ -36,7 +36,7 @@ groupSchema.methods.fix = function (cb) {
             minPriority = Math.min(minPriority, enrollments[i]._queryEntry.priority);
           }
         }
-        QueueEntry.find({_group: this._id}, function(err, entries) {
+        QueueEntry.find( {_group: this._id}, function(err, entries) {
           entries.forEach(function(entry) {
             if (entry.priority < minPriority) {
               entry.valid = false;

@@ -184,4 +184,22 @@ app.get('/getState/:courseId', function (req, res) {
   });
 });
 
+var unenroll = function (enrollment) {
+  Group.findOne({_id: enrollment._group}, function(err, group) {
+    enrollment.remove(function (err) {
+      group.fix(function(){});
+    });
+  });
+}
+
+app.get('/unenroll/:courseId', function(req, res) {
+  Group.getActiveEnrollment(req.session.user, req.params.courseId, unenroll);
+});
+
+app.get('/unenroll/:userId/:courseId', function(req, res) {
+  User.findOne({_id: Greq.params.userId}, function(err, user) {
+    Group.getActiveEnrollment(user, req.params.courseId, unenroll);
+  });
+});
+
 app.listen(3000);
