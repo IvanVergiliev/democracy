@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>СУСИ</title>
+        <title>Democracy FMI</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
-        <link href="css/teacher-courses-list.css" rel="stylesheet">
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="/css/teacher-courses-list.css" rel="stylesheet">
     </head>
     <body>
         <!-- Nav -->
@@ -65,11 +65,11 @@
                 <tbody>
                     <% for (var i = 0; i < courses.length; i += 1) { %>
                     <tr>
-                        <td><a href="/teacher-courses/<%= courses[i]._id%>" role="button" class="btn btn-link">
+                        <td><a href="/teacher/courses/<%= courses[i]._id%>" role="button" class="btn btn-link">
                             <%= courses[i].name %></a></td>
                         <td><%= courses[i].group %></td>
-                        <td>92</td>
-                        <td>52</td>
+                        <td>132</td>
+                        <td><%= enrollments[i].length %></td>
                     </tr>
                     <% } %>
                 </tbody>
@@ -82,6 +82,6 @@
         </div> <!-- container-body -->
 
         <script src="http://code.jquery.com/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
     </body>
 </html>
