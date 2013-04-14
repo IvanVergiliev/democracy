@@ -267,4 +267,34 @@ app.get('/enqueue/:courseId', function(req, res) {
   });
 });
 
+app.post('/group/add', function (req, res) {
+  var data = req.body;
+  var user = req.session.user;
+
+  user.addGroup(data.name, data.maxEntries, function(err, group) {
+    if (!err) {
+      res.json({
+        result: false,
+        msg: 'Нямаш право на толкова голяма група.'
+      });
+    } else {
+      group.save(function (err, gr) {
+        res.json({
+          result: true
+        });
+      });
+    }
+  });
+});
+
+app.get('/groups', function (req, res) {
+  Group.getWithEnrollments(req.session.user._id, function(err, groups) {
+    if (!err) {
+      res.json(groups);
+    } else {
+      res.json(err);
+    }
+  });
+});
+
 app.listen(3000);

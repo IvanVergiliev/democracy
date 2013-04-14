@@ -127,6 +127,20 @@ groupSchema.statics.getQueueEntry = function (userId, courseId, cb) {
   });
 };
 
+groupSchema.statics.getWithEnrollments = function (userId, callback) {
+  Group.find(
+    { _user: userId },
+    function (err, groups) {
+      console.log(groups);
+      async.map(groups, function (group, cb) {
+        Enrollment.forGroup(group, function (err, enrollments) {
+          group.enrollments = enrollments;
+          cb(null, group);
+        });
+      }, callback);
+  });
+}
+
 var Group = mongoose.model('Group', groupSchema);
 
 module.exports = Group;
