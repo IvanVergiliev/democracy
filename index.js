@@ -71,17 +71,25 @@ app.get('/logout', function(req, res) {
 });
 
 app.get('/', function(req, res) {
+  var userId = req.session.user._id;
   Course.find()
     .populate('_teacher')
     .exec(function(err, courses) {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      console.log(courses.toString());
-      res.render('index', {
-        courses: courses,
-        user: req.session.user
+      async.map(courses, function (item, callback) {
+        item.getState(userId, function (res) {
+          callback(null, res);
+        });
+      }, function (err, statuses) {
+        if (err) {
+          console.log(err);
+          return;
+        }
+        console.log(courses.toString());
+        res.render('index', {
+          courses: courses,
+          statuses: statuses,
+          user: req.session.user
+        });
       });
     });
 });

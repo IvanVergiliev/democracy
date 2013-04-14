@@ -140,7 +140,11 @@
                             <td><abbr title="Математика"><%= courses[i].group %></abbr></td>
                             <td><%= courses[i].ects %></td>
                             <td>
-                              <a href="#enroll-linux-sys-admin" role="button" class="btn btn-success showEnroll" data-toggle="modal" data-id="<%= courses[i]._id %>">Запиши</a>
+                              <% if (statuses[i] == 'Записан') { %>
+                                Записан!
+                              <% } else { %>
+                                <a href="#enroll-linux-sys-admin" role="button" class="btn btn-success showEnroll" data-toggle="modal" data-id="<%= courses[i]._id %>">Запиши</a>
+                              <% } %>
                             </td>
                           </tr>
                         <% } %>
