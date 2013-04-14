@@ -165,4 +165,11 @@ app.post('/enroll', function(req, res) {
   });
 });
 
+app.get('/getActiveEnrollment/:courseId', function (req, res) {
+  var userId = req.session.user._id;
+  Group.getActiveEnrollment(req.session.user, req.params.courseId, function (enrollment) {
+    res.json(enrollment);
+  })
+});
+
 app.listen(3000);

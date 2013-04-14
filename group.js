@@ -1,3 +1,4 @@
+var async = require('async');
 var mongoose = require('mongoose');
 var Enrollment = require('./enrollment.js');
 
@@ -60,6 +61,35 @@ groupSchema.methods.addEnrollment = function (courseId, cb) {
     _course: courseId
   });
   enrollment.save(cb);
+};
+
+groupSchema.methods.getActiveEnrollment_SingleGroup = function (courseId, cb) {
+  var group = this;
+  Enrollment.forGroup(this, function (err, enrollments) {
+    async.reduce(enrollments, null, function (memo, item, callback) {
+      if (!item.endDate && item._course._id == courseId) {
+        memo = item;
+      }
+      callback(null, memo);
+    }, function (err, result) {
+      cb(result);
+    });
+  });
+};
+
+groupSchema.statics.getActiveEnrollment = function (user, courseId, cb) {
+  Group.find({_user: user._id}, function (err, groups) {
+    async.reduce(groups, null, function (memo, item, callback) {
+      item.getActiveEnrollment_SingleGroup(courseId, function (result) {
+        if (result != null) {
+          memo = result;
+        }
+        callback(null, memo);
+      });
+    }, function (err, result) {
+      cb(result);
+    });
+  });
 };
 
 var Group = mongoose.model('Group', groupSchema);
