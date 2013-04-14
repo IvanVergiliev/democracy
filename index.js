@@ -235,7 +235,9 @@ app.get('/dequeue/:courseId', function(req, res) {
   Group.getQueueEntry(userId, courseId, function (queueEntry) {
     queueEntry.valid = false;
     queueEntry.save(function() {
-      res.json(queueEntry);
+      res.json({
+        result: true
+      });
     });
   });
 });

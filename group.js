@@ -106,7 +106,7 @@ groupSchema.statics.getActiveEnrollment = function (user, courseId, cb) {
 
 groupSchema.methods.getQueueEntry_SingleGoup = function (courseId, cb) {
   var group = this;
-  QueueEntry.findOne({_course: courseId, _group: group._id},
+  QueueEntry.findOne({_course: courseId, _group: group._id, valid: true},
     function(err, result) {
       cb(result);
   });

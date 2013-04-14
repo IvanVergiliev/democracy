@@ -40,6 +40,7 @@ $('body').on('click', '.unenroll', function() {
       }
     }
   });
+  return false;
 });
 
 $('body').on('click', '.enroll', function () {
@@ -62,6 +63,7 @@ $('body').on('click', '.enroll', function () {
       $('.enrollResult').show();
     }
   });
+  return false;
 });
 
 $('body').on('click', '.enqueue', function () {
@@ -76,6 +78,22 @@ $('body').on('click', '.enqueue', function () {
       }
     }
   });
+  return false;
+});
+
+$('body').on('click', '.dequeue', function () {
+  var id = this.dataset.id;
+  $.ajax({
+    type: 'get',
+    url: 'dequeue/' + id,
+    success: function (json) {
+      if (json.result) {
+        $('a[data-id=' + id + '].dequeue').hide();
+        $('a[data-id=' + id + '].enqueue').show();
+      }
+    }
+  });
+  return false;
 });
 
 var filterRows = function (query) {
