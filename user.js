@@ -15,7 +15,7 @@ userSchema.statics.exists = function (user, pass, cb) {
 
 userSchema.methods.maxSimultaneous = function () {
   // TODO: make this smarted according to rating.
-  return 100;
+  return 2;
 };
 
 userSchema.methods.canAddGroup = function (maxSize, cb) {
