@@ -192,16 +192,22 @@ app.get('/getState/:courseId', function (req, res) {
   });
 });
 
-var unenroll = function (enrollment) {
+var unenroll = function (enrollment, cb) {
   Group.findOne({_id: enrollment._group}, function(err, group) {
     enrollment.remove(function (err) {
-      group.fix(function(){});
+      group.fix(cb);
     });
   });
 }
 
 app.get('/unenroll/:courseId', function(req, res) {
-  Group.getActiveEnrollment(req.session.user, req.params.courseId, unenroll);
+  Group.getActiveEnrollment(req.session.user, req.params.courseId, function (enrollment) {
+    unenroll(enrollment, function () {
+      res.json({
+        result: true
+      });
+    });
+  });
 });
 
 app.get('/unenroll/:userId/:courseId', function(req, res) {

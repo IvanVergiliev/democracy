@@ -141,7 +141,8 @@
                             <td><%= courses[i].ects %></td>
                             <td>
                               <% if (statuses[i] == 'Записан') { %>
-                                Записан!
+                                <a href="#" role="button" class="btn btn-danger unenroll" data-toggle="modal" data-id="<%= courses[i]._id %>">Отпиши</a>
+                                <span class="unenrollStatus"></span>
                               <% } else { %>
                                 <a href="#enroll-linux-sys-admin" role="button" class="btn btn-success showEnroll" data-toggle="modal" data-id="<%= courses[i]._id %>">Запиши</a>
                               <% } %>

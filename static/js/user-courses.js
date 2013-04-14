@@ -27,6 +27,19 @@ $('.showEnroll').click(function() {
   });
 });
 
+$('body').on('click', '.unenroll', function() {
+  var id = this.dataset.id;
+  $.ajax({
+    type: 'get',
+    url: 'unenroll/' + id,
+    success: function (json) {
+      if (json.result) {
+        $('.unenrollStatus').html('Отписан!');
+      }
+    }
+  });
+});
+
 $('body').on('click', '.enroll', function () {
   var id = this.dataset.id;
   $.ajax({
