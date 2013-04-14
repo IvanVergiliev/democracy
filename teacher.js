@@ -31,9 +31,9 @@ var addTeacherMethods = function (app) {
       .exists('endDate', false)
       .exec(function (err, enrollments) {
         async.map(enrollments, function (enrollment, cb) {
-          Group.findOne({id: enrollment._group}, function (err, group) {
+          Group.findOne({_id: enrollment._group}, function (err, group) {
             err && console.log(err);
-            User.findOne({id: group._user}, function (err, user) {
+            User.findOne({_id: group._user}, function (err, user) {
               cb(null, user);
             });
           });
