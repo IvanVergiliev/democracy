@@ -54,7 +54,7 @@
 
                             <div class="input-prepend">
                                 <span class="add-on"><i class="icon-search"></i></span>
-                                <input type="text" class="span3" placeholder="Търсене на дисциплина" data-provide="typeahead" data-items="4" data-source="[&quot;Линукс ситемно администриране&quot;,&quot;КГМ&quot;,&quot;СДП&quot;,&quot;ООП&quot;,&quot;Анализ 1&quot;,&quot;Анализ 2&quot;,&quot;ЕАИ&quot;,&quot;Pyhon&quot;,&quot;МУИ&quot;]">
+                                <input type="text" class="span3" placeholder="Търсене на дисциплина" id="filter">
                             </div>
 
                             <div class="input-prepend">
@@ -140,12 +140,8 @@
                             <td><abbr title="Математика"><%= courses[i].group %></abbr></td>
                             <td><%= courses[i].ects %></td>
                             <td>
-                              <% if (statuses[i] == 'Записан') { %>
-                                <a href="#" role="button" class="btn btn-danger unenroll" data-toggle="modal" data-id="<%= courses[i]._id %>">Отпиши</a>
-                                <span class="unenrollStatus"></span>
-                              <% } else { %>
-                                <a href="#enroll-linux-sys-admin" role="button" class="btn btn-success showEnroll" data-toggle="modal" data-id="<%= courses[i]._id %>">Запиши</a>
-                              <% } %>
+                                <a href="#" role="button" class="btn btn-danger unenroll" data-toggle="modal" data-id="<%= courses[i]._id %>" style="display: <%= (statuses[i] == 'Записан') ? '' : 'none' %>">Отпиши</a>
+                                <a href="#enroll-linux-sys-admin" role="button" class="btn btn-success showEnroll" data-toggle="modal" data-id="<%= courses[i]._id %>" style="display: <%= statuses[i] == 'not enrolled' ? '' : 'none' %>">Запиши</a>
                             </td>
                           </tr>
                         <% } %>

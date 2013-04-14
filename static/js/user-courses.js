@@ -35,6 +35,8 @@ $('body').on('click', '.unenroll', function() {
     success: function (json) {
       if (json.result) {
         $('.unenrollStatus').html('Отписан!');
+        $('a[data-id=' + id + '].showEnroll').show();
+        $('a[data-id=' + id + '].unenroll').hide();
       }
     }
   });
@@ -51,10 +53,27 @@ $('body').on('click', '.enroll', function () {
     success: function (json) {
       if (json.result) {
         $('.enrollResult').html('Готово!');
+        $('a[data-id=' + id + '].unenroll').show();
+        $('a[data-id=' + id + '].showEnroll').hide();
+        $('a[data-id=' + id + '].enroll').hide();
       } else {
         $('.enrollResult').html(json.msg);
       }
       $('.enrollResult').show();
     }
   });
+});
+
+var filterRows = function (query) {
+  $('.showDescription').each(function (index, item) {
+    if (item.innerHTML.indexOf(query) == -1) {
+      $(item).parent().parent().hide();
+    } else {
+      $(item).parent().parent().show();
+    }
+  });
+};
+
+$('#filter').keyup(function () {
+  filterRows(this.value);
 });
