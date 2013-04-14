@@ -16,6 +16,7 @@ var Group = require('./group.js');
 var Course = require('./course.js');
 var Enrollment = require('./enrollment.js');
 var QueueEntries = require('./queue_entry.js');
+var Event = require('./event.js');
 
 var app = express();
 
