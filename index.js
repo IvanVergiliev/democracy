@@ -94,6 +94,9 @@ app.get('/', function(req, res) {
     });
 });
 
+var teacher = require('./teacher.js');
+teacher.addTeacherMethods(app);
+
 app.get('/enrollments', function(req, res) {
   var data = req.body;
   var enr = new Enrollment({startDate: Date.now()});

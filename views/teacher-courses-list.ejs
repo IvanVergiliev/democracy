@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>СУСИ</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="css/teacher-courses-list.css" rel="stylesheet">
+    </head>
+    <body>
+        <!-- Nav -->
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="#">СУСИ</a>
+                    <div class="nav-collapse collapse">
+                        <ul class="nav">
+                            <li class="active"><a href="#">Моите курсове</a></li>
+                        </ul>
+                        <ul class="nav pull-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle"
+                                data-toggle="dropdown">
+                                  <%= user.name %>
+                                  <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Съобщения</a></li>
+                                    <li class="divider"></li>
+                                    <li class="nav-header">Насторйки</li>
+                                    <li><a href="#">Смяна на парола</a></li>
+                                </ul>
+                            </li>
+                            <li class="divider-vertical"></li>
+                            <li><a href="#" title="Изход от профила">Изход</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container container-body">
+
+            <!-- intro -->
+            <div class="page-header">
+                <h4>Курсове, които водя</h4>
+                <p>Списък с водените от мен курсове.</p>
+            </div>
+
+            <!-- list of my courses -->
+            <table class="id-list table table-hover">
+                <thead>
+                    <tr>
+                        <td>Дисциплина</td>
+                        <td>Група</td>
+                        <td>Брой преглеждания</td>
+                        <td>Желаещи</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i = 0; i < courses.length; i += 1) { %>
+                    <tr>
+                        <td><a href="/teacher-courses/<%= courses[i]._id%>" role="button" class="btn btn-link">
+                            <%= courses[i].name %></a></td>
+                        <td><%= courses[i].group %></td>
+                        <td>92</td>
+                        <td>52</td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>
+
+            <footer>
+                <p>&copy; HackFMI 2013</p>
+            </footer>
+
+        </div> <!-- container-body -->
+
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </body>
+</html>
