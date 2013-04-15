@@ -1,0 +1,44 @@
+/* for bootstrap-redable */
+body {
+    background-color: #fff;
+}
+
+/* basic css */
+.container-body {
+    margin-top: 55px;
+}
+.id-list,
+.students-list {
+    border: 1px solid #ddd;
+}
+.id-list thead,
+.students-list thead {
+    background-color: #efefef;
+}
+.id-list td:last-child,
+.students-list td:last-child {
+    max-width: 190px;
+}
+
+/* bootstrap edit */
+.input-prepend {
+    display: block;
+}
+.input-prepend input[class*="span"],
+.input-prepend select[class*="span"] {
+    display: inline;
+}
+@media all and (max-width: 767px) {
+    .input-prepend select,
+    .input-prepend select[class*="span"] {
+        display: inline-block;
+        width: auto;
+    }
+}
+
+/* media queries */
+@media all and (max-width: 979px) {
+    .container-body {
+        margin-top: 0;
+    }
+}
