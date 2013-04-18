@@ -1,5 +1,6 @@
 @import url(basic.css);
 
+/* intro - info */
 .accordion-heading {
     background: #efefef url(../img/info.png) 10px 5px no-repeat;
     padding-left: 30px;
@@ -7,31 +8,85 @@
 .accordion-heading a {
     color: #333;
 }
-#queued .container {
-    display: inline-table;
-}
+
+/* search */
 .id-search input, .id-search select {
     display: inline-block;
     width: auto;
+}
+
+/* all-courses */
+#all-courses td {
+    vertical-align: middle;
+}
+#all-courses td:first-child .btn {
+    text-align: left;
+}
+#all-courses td:nth-child(3),
+#queued td:nth-child(3) {
+    width: 42px; /* 39px */
+}
+#all-courses td:nth-child(4) {
+    width: 40px; /* 37px */
+}
+#all-courses td:nth-child(5) {
+    width: 32px; /* 30px*/
+}
+#all-courses td:nth-child(6) {
+    width: 110px; /* 107px */
+}
+#all-courses td:last-child { /* nth-child(7) */
+    width: 185px; /* 182px = width of largest button - "Нареди се на опашката" */
+    overflow: hidden;
+}
+
+/* queued */
+#queued .container {
+    display: inline-table;
 }
 #queued .container {
     margin-bottom: 120px;
     margin-left: 30px;
 }
+#queued td:nth-child(1) {
+    width: 10px; /* 10px = width of "#" */
+}
+#queued td:last-child {
+    width: 155px; /* 150px = width of dropdown menu */
+}
+
+/* all-courses and queued*/
+#all-courses td:nth-child(3),
+#queued td:nth-child(3),
+#all-courses td:nth-child(4),
+#all-courses td:nth-child(5),
+#all-courses td:nth-child(6),
+#all-courses td:last-child,
+#queued td:last-child {
+    text-align: center;
+}
 
 /* media queries */
-@media all and (min-width: 768px) {
-    .id-list thead tr td:nth-child(2n):nth-child(3n), 
-    .id-list tbody tr td:nth-child(2n):nth-child(3n) {
-        display: table-cell;
+@media all and (min-width: 980px) {
+
+}
+@media all And (max-width: 979px) {
+    #all-courses td:nth-child(5), /* remove year */
+    #all-courses td:nth-child(6) { /* remove subject */
+        display: none;
+    }
+}
+@media all and (min-width: 769px) and (max-width: 979px) {
+    #queued td:nth-child(3) { /* remove group */
+        display: none;
     }
 }
 @media all and (max-width: 767px)  {
-    .id-list td:nth-child(3n) {
-        display: none;
+    #all-courses tr td:last-child { /* nth-child(7) */
+        width: 90px; /* 78px = width of button "Запиши"/"Отпиши" */
     }
-    #queued .id-list td:nth-child(3n) {
-        display: table-cell;
+    #all-courses td:nth-child(2) { /* remove teachers */
+        display: none;
     }
     .id-search .input-prepend {
         display: block;
@@ -45,18 +100,15 @@
     }
     
 }
-@media all and (min-width: 500px) and (max-width: 767px)  {
-    .id-list td:nth-child(4n) {
-        display: none;
-    }
+@media all and (min-width: 480px) and (max-width: 767px)  {
+    
 }
-@media all and (max-width: 499px)  {
-    .id-list td:nth-child(3n),
-    .id-list td:nth-child(2n) {
+@media all and (max-width: 479px)  {
+    #all-courses td:nth-child(3), /* remove group */
+    #all-courses td:nth-child(4) { /* remove ECTS */
         display: none;
     }
-    #queued .id-list td:nth-child(3n),
-    #queued .id-list td:nth-child(2n) {
-        display: table-cell;
+    #queued td:nth-child(3) { /* remove group */
+        display: none;
     }
 }

@@ -7,17 +7,12 @@ body {
 .container-body {
     margin-top: 55px;
 }
-.id-list,
-.students-list {
+.list {
     border: 1px solid #ddd;
 }
-.id-list thead,
+.list thead,
 .students-list thead {
     background-color: #efefef;
-}
-.id-list td:last-child,
-.students-list td:last-child {
-    max-width: 190px;
 }
 
 /* bootstrap edit */

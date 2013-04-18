@@ -49,17 +49,15 @@
                 <h4>Записване за избираеми дисциплини</h4>
                 <p>Записването на избираеми дисциплини се осъществява по време на <em>Кампания за записване на избираеми дисциплини</em>, която се стартира от администратора на СУСИ4 и продължава 4 седмици.</p>
                 <p><strong>Срок:</strong> 21 април 2013, 23:59</p>
-                <div class="accordion" id="accordion2">
+                <div class="accordion" id="campaign-info">
                     <div class="accordion-group">
                         <div class="accordion-heading">
-                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">Технология на записване на избираеми дисциплини</a>
+                            <a class="accordion-toggle" data-toggle="collapse" data-parent="#campaign-info" href="#collapse-campaign-info">Технология на записване на избираеми дисциплини</a>
                         </div>
-                        <div id="collapseOne" class="accordion-body collapse">
+                        <div id="collapse-campaign-info" class="accordion-body collapse">
                             <div class="accordion-inner">
-                                <p>Технологията за записване на избираеми дисциплини е следната:<br />
-                                    Записването на избираеми дисциплини (ИД) се осъществява по време на Кампания за записване на избираеми дисциплини, която се стартира от администратора на СУСИ4 и има два последователни етапа. Обявяват се три дати: начална дата на първи етап, начална дата на втори етап (първият етап приключва в 24:00 часа на предната дата) и крайна дата.</p>
-                                <p>През I етап (който може да започне далеч преди началото на семестъра, за който се записват избираеми дисциплини) студентът записва дисциплини с един от два или три възможни приоритета: твърдо решил, колебая се и (евентуално) малко вероятно. Тези приоритети трябва да отразяват неговата предварителна нагласа за дисциплините, които иска да посещава през семестъра. По време на първия етап студентът може да прави неограничени промени в избора си – да записва, да отписва, отново да записва, да сменя приоритетите. В избраните дисциплини по време на първия етап трябва да се включат всички дисциплини, които има вероятност да бъдат избрани окончателно. В никакъв случай, обаче, този избор не трябва да е "разточителен", тъй като на негова основа се взимат административни решения. Желателно е студентите да записват със статус "твърдо решил" тези дисциплини, които имат намерение да посещават, а със статус "колебая се" – тези дисциплини, които избират като резерва. СЛЕД КРАЯ НА I ЕТАП НЯМА ВЪЗМОЖНОСТ ЗА ЗАПИСВАНЕ НА НОВИ ИЗБИРАЕМИ ДИСЦИПЛИНИ!</p>
-                                <p>По време на II етап студентът има достъп само до дисциплините, които е избрал по време на първия етап (независимо от приоритета, с който са избрани), като може да променя приоритета на всяка отделна дисциплина или да я отпише, но не може да записва нови. През този етап студентът трябва да приведе приоритета на дисциплините, за които е взел окончателно решение да "слуша" през семестъра, в състояние твърдо решил (ако не е направил това още на първия етап). </p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis lorem ut neque porta luctus. Etiam rhoncus elit vitae metus ultricies semper et faucibus libero. Nam congue gravida mi, ut cursus dolor accumsan viverra. Sed aliquam dolor at purus sodales at eleifend nisi imperdiet. Quisque vel arcu urna. Vestibulum facilisis ligula quis sem convallis mattis. Vivamus consectetur, enim dignissim vestibulum dignissim, elit risus suscipit arcu, non scelerisque justo dui nec nisl. Vestibulum laoreet, dui bibendum sagittis vehicula, leo mi luctus augue, non dignissim enim risus quis mauris. Vestibulum sit amet laoreet mi. Donec in tellus diam. Ut ac odio mi. Etiam vel sagittis dolor. Morbi nisl eros, tristique in tempor ullamcorper, sollicitudin eget augue.</p>
+                                <p>Phasellus ac placerat urna. In vestibulum, ante nec gravida suscipit, turpis turpis accumsan eros, et pulvinar purus elit in orci. Sed rutrum egestas nulla at laoreet. Nunc lacinia turpis ut diam mattis consequat. Sed nisi ligula, tempor id tincidunt interdum, iaculis eget neque. Fusce bibendum mauris non mi pellentesque vitae elementum dolor pharetra. Aliquam posuere venenatis orci in accumsan. In hac habitasse platea dictumst. Pellentesque molestie, tortor ut dapibus iaculis, metus mi porttitor justo, et mollis purus nunc in tortor. In hac habitasse platea dictumst. Ut ut malesuada turpis. Duis vulputate orci leo, vel lacinia leo.</p>
                             </div>
                         </div>
                     </div>
@@ -104,7 +102,7 @@
             </div>
 
             <!-- message -->
-            <div class="bs-docs-example" id="id-list-5" style="display: none;">
+            <div class="bs-docs-example">
                 <div class="alert alert-success fade in">
                     <button type="button" class="close" data-dismiss="alert">×</button>
                     Успешно записахте <strong>Анализ 1</strong>.
@@ -112,48 +110,56 @@
             </div>
 
             <!-- message -->
-            <div class="bs-docs-example" id="id-list-6" style="display: none;">
+            <div class="bs-docs-example">
                 <div class="alert alert-heading fade in">
                     <button type="button" class="close" data-dismiss="alert">×</button>
                     Добавен сте на опашаката за <strong>Python</strong>.
                 </div>
             </div>
 
-
-
-
-
-
-
             <!-- courses tab nav -->
             <ul class="nav nav-tabs" id="coursesTab">
-                <li class="active"><a href="#not-enrolled">Незаписани</a></li>
+                <li class="active"><a href="#all-courses">Всички</a></li>
                 <li><a href="#queued">На опашката</a></li>
-                <li><a href="#enrolled">Записани</a></li>
             </ul>
 
             <!-- courses tabs-->
             <div class="tab-content">
                 <!-- not enrolled courses -->
-                <div class="tab-pane active" id="not-enrolled">
+                <div class="tab-pane active" id="all-courses">
 
                     <!-- list of not enrolled courses -->
-                    <table class="id-list table table-hover">
+                    <table class="list table table-hover">
                         <thead>
                             <tr>
                                 <td>Дисциплина</td>
                                 <td>Преподавател</td>
                                 <td>Група</td>
                                 <td>ECTS</td>
-                                <td class="span3">Действие</td>
+                                <td>Курс</td>
+                                <td>Учебни планове</td>
+                                <td>Действие</td>
                             </tr>
                         </thead>
                         <tbody>
+                            <tr class="success">
+                                <td><a href="#info-linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">Линукс системно администриране</a></td>
+                                <td>М. Маринов</td>
+                                <td><abbr title="Ядро на компютърните науки">ЯКН</abbr></td>
+                                <td>7</td>
+                                <td>1</td>
+                                <td><a href="#">покажи</a></td>
+                                <td>
+                                    <button class="btn btn-danger" type="button">Отпиши</button>
+                                </td>
+                            </tr>
                             <tr>
                                 <td><a href="#info-linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">Анализ 1</a></td>
                                 <td>А. Александров</td>
                                 <td><abbr title="Математика">М</abbr></td>
                                 <td>6</td>
+                                <td>1</td>
+                                <td><a href="#">покажи</a></td>
                                 <td>
                                     <a href="#enroll-linux-sys-admin" role="button" class="btn btn-success" data-toggle="modal">Запиши</a>
                                 </td>
@@ -163,6 +169,8 @@
                                 <td>Бъчваров</td>
                                 <td><abbr title="Основи на компютърните науки">ОКН</abbr></td>
                                 <td>7</td>
+                                <td>1</td>
+                                <td><a href="#">покажи</a></td>
                                 <td>
                                     <button class="btn btn-success" type="button">Запиши</button>
                                 </td>
@@ -172,6 +180,8 @@
                                 <td>Бъчваров</td>
                                 <td><abbr title="Основи на компютърните науки">ОКН</abbr></td>
                                 <td>5</td>
+                                <td>1</td>
+                                <td><a href="#">покажи</a></td>
                                 <td>
                                     <button class="btn btn-success" type="button">Запиши</button>
                                 </td>
@@ -181,6 +191,8 @@
                                 <td>unnamed</td>
                                 <td><abbr title="Приложна математика">ПМ</abbr></td>
                                 <td>4</td>
+                                <td>1</td>
+                                <td><a href="#">покажи</a></td>
                                 <td>
                                     <button class="btn btn-success" type="button">Запиши</button>
                                 </td>
@@ -190,6 +202,8 @@
                                 <td>Соскова</td>
                                 <td><abbr title="Приложна математика">ПМ</abbr></td>
                                 <td>5</td>
+                                <td>1</td>
+                                <td><a href="#">покажи</a></td>
                                 <td>
                                     <button class="btn btn-success" type="button">Запиши</button>
                                 </td>
@@ -199,6 +213,8 @@
                                 <td>А. Александров</td>
                                 <td><abbr title="Приложна математика">ПМ</abbr></td>
                                 <td>6</td>
+                                <td>1</td>
+                                <td><a href="#">покажи</a></td>
                                 <td>
                                     <button class="btn btn-success" type="button">Запиши</button>
                                 </td>
@@ -208,6 +224,8 @@
                                 <td>unnamed</td>
                                 <td><abbr title="Ядро на компютърните науки">ЯКН</abbr></td>
                                 <td>6</td>
+                                <td>1</td>
+                                <td><a href="#">покажи</a></td>
                                 <td>
                                     <a href="#queued-linux-sys-admin" role="button" class="btn btn-warning" data-toggle="modal">Нареди се на опашката</a>
                                 </td>
@@ -220,13 +238,29 @@
                 <!-- queued courses -->
                 <div class="tab-pane" id="queued">
 
-                    <div class="container span3">
+                    <p>Групите помагат да подредите приоритетите си между курсовете, за които в момента сте на опашка.</p>
+                    <div class="accordion" id="grouping-info">
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#grouping-info" href="#collapse-grouping-info">Работа с групите</a>
+                            </div>
+                            <div id="collapse-grouping-info" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis lorem ut neque porta luctus. Etiam rhoncus elit vitae metus ultricies semper et faucibus libero. Nam congue gravida mi, ut cursus dolor accumsan viverra. Sed aliquam dolor at purus sodales at eleifend nisi imperdiet. Quisque vel arcu urna. Vestibulum facilisis ligula quis sem convallis mattis. Vivamus consectetur, enim dignissim vestibulum dignissim, elit risus suscipit arcu, non scelerisque justo dui nec nisl. Vestibulum laoreet, dui bibendum sagittis vehicula, leo mi luctus augue, non dignissim enim risus quis mauris. Vestibulum sit amet laoreet mi. Donec in tellus diam. Ut ac odio mi. Etiam vel sagittis dolor. Morbi nisl eros, tristique in tempor ullamcorper, sollicitudin eget augue.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="container span5">
                         <h3>Група 1</h3>
-                        <table class="id-list table table-hover">
+                        <table class="list table table-hover">
                             <thead>
                                 <tr>
                                     <td>#</td>
                                     <td>Дисциплина</td>
+                                    <td>Група</td>
                                     <td></td>
                                 </tr>
                             </thead>
@@ -234,6 +268,7 @@
                                 <tr class="warning">
                                     <td>1</td>
                                     <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">МУИ</a></td>
+                                    <td><abbr title="Приложна математика">ПМ</abbr></td>
                                     <td>
                                         <div class="btn-group">
                                             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -252,6 +287,7 @@
                                 <tr class="warning">
                                     <td>1</td>
                                     <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">МУИ</a></td>
+                                    <td><abbr title="Приложна математика">ПМ</abbr></td>
                                     <td>
                                         <div class="btn-group">
                                             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -271,13 +307,14 @@
                         </table>
                     </div>
 
-                    <div class="container span3">
+                    <div class="container span5">
                         <h3>Група 2</h3>
-                        <table class="id-list table table-hover">
+                        <table class="list table table-hover">
                             <thead>
                                 <tr>
                                     <td>#</td>
                                     <td>Дисциплина</td>
+                                    <td>Група</td>
                                     <td></td>
                                 </tr>
                             </thead>
@@ -285,6 +322,7 @@
                                 <tr class="warning">
                                     <td>1</td>
                                     <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">МУИ</a></td>
+                                    <td><abbr title="Приложна математика">ПМ</abbr></td>
                                     <td>
                                         <div class="btn-group">
                                             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -303,6 +341,7 @@
                                 <tr class="warning">
                                     <td>1</td>
                                     <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">МУИ</a></td>
+                                    <td><abbr title="Приложна математика">ПМ</abbr></td>
                                     <td>
                                         <div class="btn-group">
                                             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -321,34 +360,6 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-
-                <!-- enrolled courses -->
-                <div class="tab-pane" id="enrolled">
-
-                    <!-- list of not enrolled courses -->
-                    <table class="id-list table table-hover">
-                        <thead>
-                            <tr>
-                                <td>Дисциплина</td>
-                                <td>Преподавател</td>
-                                <td>Група</td>
-                                <td>ECTS</td>
-                                <td>Действие</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="success">
-                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">Линукс системно администриране</a></td>
-                                <td>М. Маринов</td>
-                                <td><abbr title="Ядро на компютърните науки">ЯКН</abbr></td>
-                                <td>7</td>
-                                <td>
-                                    <button class="btn btn-danger" type="button">Отпиши</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
 

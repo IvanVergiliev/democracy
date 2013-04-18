@@ -5,14 +5,27 @@
     margin: 0 auto;
 }
 
+#students-list td:nth-child(1) {
+    text-align: center;
+}
+#students-list td:nth-child(3) {
+    width: 200px; /* RANDpx = width of regdate */
+}
+
+/* students-list */
+#students-list td:last-child {
+    width: 155px; /* 150px = size of dropdown menu */
+    text-align: center;
+}
+
 /* media queries */
 @media all and (min-width: 768px) {
-    .students-list td:nth-child(3n+0) {
+    #students-list td:nth-child(3n+0) {
         display: table-cell;
     }
 }
 @media all and (max-width: 767px) {
-    .students-list td:nth-child(3n+0) {
+    #students-list td:nth-child(3n+0) {
         display: none;
     }
 } 

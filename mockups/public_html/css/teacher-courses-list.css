@@ -1,13 +1,13 @@
 @import url(basic.css);
 
-/* media queries */
-@media all and (min-width: 768px) {
-    .id-list td:nth-child(2n):not(:nth-child(4n)) {
-        display: table-cell;
-    }
+#my-courses td:nth-child(2) {
+    width: 100px; /* 96px = width of "Преглеждания" */
 }
-@media all and (max-width: 767px) {
-    .id-list td:nth-child(2n):not(:nth-child(4n)) {
-        display: none;
-    }
-} 
+#my-courses td:nth-child(3) {
+    width: 65px; /* 63px = width of "Записани" */
+}
+
+#my-courses td:nth-child(2),
+#my-courses td:nth-child(3) {
+    text-align: center;
+}
