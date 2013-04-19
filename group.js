@@ -32,9 +32,9 @@ groupSchema.methods.fix = function (cb) {
       }
       if (count >= this.maxEntries) {
         minPriority = this.maxEntries;
-        for (var i in enrollments) {
-          if (enrollments[i].endDate != null) {
-            minPriority = Math.min(minPriority, enrollments[i]._queryEntry.priority);
+        for (var j in enrollments) {
+          if (enrollments[j].endDate) {
+            minPriority = Math.min(minPriority, enrollments[j]._queryEntry.priority);
           }
         }
         QueueEntry.find( {_group: this._id}, function(err, entries) {
@@ -73,7 +73,7 @@ groupSchema.methods.addQueueEntry = function(courseId, cb) {
     _course: courseId
   });
   queueEntry.save(cb);
-}
+};
 
 groupSchema.methods.getActiveEnrollment_SingleGroup = function (courseId, cb) {
   var group = this;
@@ -93,7 +93,7 @@ groupSchema.statics.getActiveEnrollment = function (user, courseId, cb) {
   Group.find({_user: user._id}, function (err, groups) {
     async.reduce(groups, null, function (memo, item, callback) {
       item.getActiveEnrollment_SingleGroup(courseId, function (result) {
-        if (result != null) {
+        if (result !== null) {
           memo = result;
         }
         callback(null, memo);
@@ -116,7 +116,7 @@ groupSchema.statics.getQueueEntry = function (userId, courseId, cb) {
   Group.find({_user: userId}, function (err, groups) {
     async.reduce(groups, null, function (memo, item, callback) {
       item.getQueueEntry_SingleGoup(courseId, function (result) {
-        if (result != null) {
+        if (result !== null) {
           memo = result;
         }
         callback(null, memo);
@@ -139,7 +139,7 @@ groupSchema.statics.getWithEnrollments = function (userId, callback) {
         });
       }, callback);
   });
-}
+};
 
 var Group = mongoose.model('Group', groupSchema);
 

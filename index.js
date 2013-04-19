@@ -145,7 +145,11 @@ app.post('/addCourse', function(req, res){
 app.get('/teacherCourses', function(req, res) {
   var user = req.session.user;
   Course.find({_teacher: user._id}, function(err, courses) {
-    err && console.log(err);
+    if (err) {
+      console.log(err);
+      res.send(err);
+      return;
+    }
     res.write(courses.toString());
     res.end();
   });
@@ -211,7 +215,7 @@ var unenroll = function (enrollment, cb) {
       fixEnrollment();
     }
   });
-}
+};
 
 app.get('/unenroll/:courseId', function(req, res) {
   Group.getActiveEnrollment(req.session.user, req.params.courseId, function (enrollment) {

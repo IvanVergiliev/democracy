@@ -43,12 +43,12 @@ var afterUnregistrationFromCourse = function (courseId, cb) {
         function(cb) {
           var group = queueEntry._group;
           group.fix(cb);
-        },
+        }
       ], function() {
         cb();
       }
       );
   });
-}
+};
 
 module.exports.afterUnregistrationFromCourse = afterUnregistrationFromCourse;

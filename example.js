@@ -23,7 +23,7 @@ var foo = function (callback) {
   ], function () {
     callback(counter);
   });
-}
+};
 
 app.get('/', function(req, res){
   foo(function (counter) {
