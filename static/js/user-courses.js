@@ -103,7 +103,7 @@ $('body').on('click', '.dequeue', function () {
 
 var filterRows = function (query) {
   $('.showDescription').each(function (index, item) {
-    if (item.innerHTML.indexOf(query) == -1) {
+    if (item.innerHTML.toLowerCase().indexOf(query.toLowerCase()) == -1) {
       $(item).parent().parent().hide();
     } else {
       $(item).parent().parent().show();
