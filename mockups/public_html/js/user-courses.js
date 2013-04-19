@@ -5,6 +5,11 @@ $('#coursesTab a').click(function(e) {
     $(this).tab('show');
 });
 
+/* tooltips */
+$('#all-courses').tooltip({
+    selector: "a[data-toggle=tooltip]"
+});
+
 /* clone reCAPTCHA */
 $(function() {
     $('#firstReCAPTCHA').html($('#originalReCAPTCHA').clone(true, true));

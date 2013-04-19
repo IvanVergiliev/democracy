@@ -1,0 +1,39 @@
+/* for bootstrap-redable */
+body {
+    background-color: #fff;
+}
+
+/* basic css */
+.container-body {
+    margin-top: 55px;
+}
+.list {
+    border: 1px solid #ddd;
+}
+.list thead,
+.students-list thead {
+    background-color: #efefef;
+}
+
+/* bootstrap edit */
+.input-prepend {
+    display: block;
+}
+.input-prepend input[class*="span"],
+.input-prepend select[class*="span"] {
+    display: inline;
+}
+@media all and (max-width: 767px) {
+    .input-prepend select,
+    .input-prepend select[class*="span"] {
+        display: inline-block;
+        width: auto;
+    }
+}
+
+/* media queries */
+@media all and (max-width: 979px) {
+    .container-body {
+        margin-top: 0;
+    }
+}

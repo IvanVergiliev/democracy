@@ -113,30 +113,31 @@
 
             <!-- courses tab nav -->
             <ul class="nav nav-tabs" id="coursesTab">
-                <li class="active"><a href="#not-enrolled">Незаписани</a></li>
+                <li class="active"><a href="#all-courses">Всички</a></li>
                 <li><a href="#queued">На опашката</a></li>
-                <li><a href="#enrolled">Записани</a></li>
             </ul>
 
             <!-- courses tabs-->
             <div class="tab-content">
                 <!-- not enrolled courses -->
-                <div class="tab-pane active" id="not-enrolled">
+                <div class="tab-pane active" id="all-courses">
 
                     <!-- list of not enrolled courses -->
-                    <table class="id-list table table-hover">
+                    <table class="list table table-hover">
                         <thead>
                             <tr>
                                 <td>Дисциплина</td>
                                 <td>Преподавател</td>
                                 <td>Група</td>
                                 <td>ECTS</td>
+                                <td>Курс</td>
+                                <td>Учебни планове</td>
                                 <td>Действие</td>
                             </tr>
                         </thead>
                         <tbody>
                         <% for (var i = 0; i < courses.length; ++i) { %>
-                          <tr>
+                          <tr <%= (statuses[i] == 'Enrolled') ? 'class="success"' : '' %> <%= statuses[i] == 'Full' ? 'class="error"' : '' %> <%= statuses[i] == 'You are in queue' ? 'class="warning"' : '' %> >
                             <td><a href="#" role="button" class="btn btn-link showDescription" data-toggle="modal"><%= courses[i].name %></a></td>
                             <% if (courses[i]._teacher) { %>
                                 <td><%= courses[i]._teacher.name %></td>
@@ -145,6 +146,8 @@
                             <% } %>
                             <td><abbr title="Математика"><%= courses[i].group %></abbr></td>
                             <td><%= courses[i].ects %></td>
+                            <td><!-- year for this course --></td>
+                            <td><!-- hardcoded title --><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="И(рб), М(рб), КН(рб)">покажи</a></td>
                             <td>
                                 <a href="#" role="button" class="btn btn-danger unenroll" data-id="<%= courses[i]._id %>" style="display: <%= (statuses[i] == 'Enrolled') ? '' : 'none' %>">Отпиши</a>
                                 <a href="#enroll-linux-sys-admin" role="button" class="btn btn-success showEnroll" data-toggle="modal" data-id="<%= courses[i]._id %>" style="display: <%= statuses[i] == 'Free positions' ? '' : 'none' %>">Запиши</a>
@@ -161,13 +164,28 @@
                 <!-- queued courses -->
                 <div class="tab-pane" id="queued">
 
-                    <div class="container span3">
+                    <p>Групите помагат да подредите приоритетите си между курсовете, за които в момента сте на опашка.</p>
+                    <div class="accordion" id="grouping-info">
+                        <div class="accordion-group">
+                            <div class="accordion-heading">
+                                <a class="accordion-toggle" data-toggle="collapse" data-parent="#grouping-info" href="#collapse-grouping-info">Работа с групите</a>
+                            </div>
+                            <div id="collapse-grouping-info" class="accordion-body collapse">
+                                <div class="accordion-inner">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque quis lorem ut neque porta luctus. Etiam rhoncus elit vitae metus ultricies semper et faucibus libero. Nam congue gravida mi, ut cursus dolor accumsan viverra. Sed aliquam dolor at purus sodales at eleifend nisi imperdiet. Quisque vel arcu urna. Vestibulum facilisis ligula quis sem convallis mattis. Vivamus consectetur, enim dignissim vestibulum dignissim, elit risus suscipit arcu, non scelerisque justo dui nec nisl. Vestibulum laoreet, dui bibendum sagittis vehicula, leo mi luctus augue, non dignissim enim risus quis mauris. Vestibulum sit amet laoreet mi. Donec in tellus diam. Ut ac odio mi. Etiam vel sagittis dolor. Morbi nisl eros, tristique in tempor ullamcorper, sollicitudin eget augue.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="container span5">
                         <h3>Група 1</h3>
-                        <table class="id-list table table-hover">
+                        <table class="list table table-hover">
                             <thead>
                                 <tr>
                                     <td>#</td>
                                     <td>Дисциплина</td>
+                                    <td>Група</td>
                                     <td></td>
                                 </tr>
                             </thead>
@@ -175,6 +193,7 @@
                                 <tr class="warning">
                                     <td>1</td>
                                     <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">Advanced Data Structurs</a></td>
+                                    <td><abbr title="Приложна математика">ПМ</abbr></td>
                                     <td>
                                         <div class="btn-group">
                                             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -193,6 +212,7 @@
                                 <tr class="warning">
                                     <td>1</td>
                                     <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">Автомати</a></td>
+                                    <td><abbr title="Приложна математика">ПМ</abbr></td>
                                     <td>
                                         <div class="btn-group">
                                             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -212,13 +232,14 @@
                         </table>
                     </div>
 
-                    <div class="container span3">
+                    <div class="container span">
                         <h3>Група 2</h3>
-                        <table class="id-list table table-hover">
+                        <table class="list table table-hover">
                             <thead>
                                 <tr>
                                     <td>#</td>
                                     <td>Дисциплина</td>
+                                    <td>Група</td>
                                     <td></td>
                                 </tr>
                             </thead>
@@ -226,6 +247,7 @@
                                 <tr class="warning">
                                     <td>1</td>
                                     <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">Python</a></td>
+                                    <td><abbr title="Приложна математика">ПМ</abbr></td>
                                     <td>
                                         <div class="btn-group">
                                             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -244,6 +266,7 @@
                                 <tr class="warning">
                                     <td>1</td>
                                     <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">PHP</a></td>
+                                    <td><abbr title="Приложна математика">ПМ</abbr></td>
                                     <td>
                                         <div class="btn-group">
                                             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -263,34 +286,7 @@
                         </table>
                     </div>
                 </div>
-
-                <!-- enrolled courses -->
-                <div class="tab-pane" id="enrolled">
-
-                    <!-- list of not enrolled courses -->
-                    <table class="id-list table table-hover">
-                        <thead>
-                            <tr>
-                                <td>Дисциплина</td>
-                                <td>Преподавател</td>
-                                <td>Група</td>
-                                <td>ECTS</td>
-                                <td>Действие</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="success">
-                                <td><a href="#linux-sys-admin" role="button" class="btn btn-link" data-toggle="modal">Линукс системно администриране</a></td>
-                                <td>М. Маринов</td>
-                                <td><abbr title="Ядро на компютърните науки">ЯКН</abbr></td>
-                                <td>7</td>
-                                <td>
-                                    <button class="btn btn-danger" type="button">Отпиши</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                
             </div>
 
             <!-- Modal - course info -->
@@ -341,7 +337,7 @@
                         <div id="secondReCAPTCHA"></div>
                     </div>
                     <div class="modal-footer">
-                        <a href="#" class="btn">Отказ</a>
+                        <a href="#" class="btn" data-dismiss="modal">Отказ</a>
                         <a href="#" class="btn btn-warning">Нареди се на опашката</a>
                     </div>
                 </div>

@@ -1,28 +1,32 @@
-/* for bootstrap-redable */
-body {
-    background-color: #fff;
+@import url(basic.css);
+
+#chart-container {
+    height: 400px;
+    margin: 0 auto;
 }
 
-.container-body {
-    margin-top: 60px;
+#students-list td:nth-child(1) {
+    width: 65px; /* 60px = maybe width of faculty number */
+    text-align: center;
+}
+#students-list td:nth-child(3) {
+    width: 200px; /* RANDpx = width of regdate */
 }
 
-.students-list {
-    border: 1px solid #ddd;
-}
-.students-list thead {
-    background-color: #efefef;
+/* students-list */
+#students-list td:last-child {
+    width: 155px; /* 150px = size of dropdown menu */
+    text-align: center;
 }
 
-@media screen and (min-width: 768px) {
-    .students-list thead tr td:nth-child(3n+0), 
-    .students-list tbody tr td:nth-child(3n+0) {
+/* media queries */
+@media all and (min-width: 768px) {
+    #students-list td:nth-child(3) {
         display: table-cell;
     }
 }
-@media screen and (max-width: 767px) {
-    .students-list thead tr td:nth-child(3n+0), 
-    .students-list tbody tr td:nth-child(3n+0) {
+@media all and (max-width: 767px) {
+    #students-list td:nth-child(3) {
         display: none;
     }
 } 

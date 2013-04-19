@@ -6,6 +6,7 @@
 }
 
 #students-list td:nth-child(1) {
+    width: 65px; /* 60px = maybe width of faculty number */
     text-align: center;
 }
 #students-list td:nth-child(3) {
@@ -20,12 +21,12 @@
 
 /* media queries */
 @media all and (min-width: 768px) {
-    #students-list td:nth-child(3n+0) {
+    #students-list td:nth-child(3) {
         display: table-cell;
     }
 }
 @media all and (max-width: 767px) {
-    #students-list td:nth-child(3n+0) {
+    #students-list td:nth-child(3) {
         display: none;
     }
 } 
