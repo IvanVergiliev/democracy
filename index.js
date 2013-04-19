@@ -1,9 +1,9 @@
-var express = require('express');
 var async = require('async');
+var events = require('events');
+var express = require('express');
 var MemoryStore = require('connect').session.MemoryStore;
 var mongoose = require('mongoose');
 var actions = require('./actions.js');
-var events = require('events');
 
 var eventEmitter = new events.EventEmitter();
 

@@ -1,10 +1,13 @@
 {
+  "name": "democracy-fmi",
+  "version": "0.1.0",
   "dependencies": {
+    "async": "0.2.7",
+    "connect": "2.7.5",
     "express": "3.1.2",
     "ejs": "0.8.3",
-    "mongodb": ">= 0",
+    "mongodb": "*",
     "mongoose": "3.6.4",
-    "async": "0.2.7",
-    "connect": "2.7.5"
+    "socket.io": "0.9.13"
   }
 }

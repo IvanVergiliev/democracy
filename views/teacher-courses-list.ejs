@@ -62,9 +62,8 @@
                 <thead>
                     <tr>
                         <td>Дисциплина</td>
-                        <td>Група</td>
-                        <td>Брой преглеждания</td>
-                        <td>Желаещи</td>
+                        <td>Преглеждания</td>
+                        <td>Записани</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,7 +71,6 @@
                     <tr>
                         <td><a href="/teacher/courses/<%= courses[i]._id%>" role="button" class="btn btn-link">
                             <%= courses[i].name %></a></td>
-                        <td><%= courses[i].group %></td>
                         <td>132</td>
                         <td><%= enrollments[i].length %></td>
                     </tr>
