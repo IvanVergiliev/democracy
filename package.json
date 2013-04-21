@@ -9,5 +9,11 @@
     "mongodb": "*",
     "mongoose": "3.6.4",
     "socket.io": "0.9.13"
+  },
+  "devDependencies": {
+    "jshint": "1.1.0"
+  },
+  "scripts": {
+    "test": "./node_modules/jshint/bin/jshint *.js"
   }
 }

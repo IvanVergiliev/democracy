@@ -215,7 +215,7 @@ var unenroll = function (enrollment, cb) {
       fixEnrollment();
     }
   });
-};
+}
 
 app.get('/unenroll/:courseId', function(req, res) {
   Group.getActiveEnrollment(req.session.user, req.params.courseId, function (enrollment) {
