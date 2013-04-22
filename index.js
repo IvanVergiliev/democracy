@@ -29,6 +29,7 @@ app.use(express.bodyParser());
 app.set('view engine', 'ejs');
 app.use(express.session({secret: 'gdfgfdgu8934t9ghervorehg', store: new MemoryStore()}));
 
+// TODO(ivan): This is executed when serving static files as well - fix it.
 app.use(function(req, res, next) {
   if (req.path == '/login' || req.path == '/register') {
     next();
@@ -215,7 +216,7 @@ var unenroll = function (enrollment, cb) {
       fixEnrollment();
     }
   });
-}
+};
 
 app.get('/unenroll/:courseId', function(req, res) {
   Group.getActiveEnrollment(req.session.user, req.params.courseId, function (enrollment) {

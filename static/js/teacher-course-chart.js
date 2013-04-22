@@ -12,7 +12,7 @@ $(function() {
         xAxis: {
             labels: {
                 formatter: function() {
-                    if(this.value%2 == 0)
+                    if(this.value % 2 === 0)
                         return this.value + ' април 2013';
                 }
             }

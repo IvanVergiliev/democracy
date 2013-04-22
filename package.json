@@ -14,6 +14,6 @@
     "jshint": "1.1.0"
   },
   "scripts": {
-    "test": "./node_modules/jshint/bin/jshint *.js"
+    "test": "./node_modules/jshint/bin/jshint ."
   }
 }
