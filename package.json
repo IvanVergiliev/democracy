@@ -11,9 +11,12 @@
     "socket.io": "0.9.13"
   },
   "devDependencies": {
-    "jshint": "1.1.0"
+    "jshint": "1.1.0",
+    "mocha": "1.9.0",
+    "request": "~2.20.0",
+    "should": "~1.2.2"
   },
   "scripts": {
-    "test": "./node_modules/jshint/bin/jshint ."
+    "test": "./node_modules/jshint/bin/jshint . && ./node_modules/mocha/bin/mocha test"
   }
 }
