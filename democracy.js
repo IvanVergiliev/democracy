@@ -12,18 +12,18 @@ var Enrollment = require('./enrollment.js');
 var QueueEntries = require('./queue_entry.js');
 var Event = require('./event.js');
 
-var Democracy = function (dbString) {
+var Democracy = function (config) {
   var eventEmitter = new events.EventEmitter();
 
 //  mongoose.connect('mongodb://164.138.216.139/hackfmi');
-  mongoose.connect(dbString);
+  mongoose.connect(config.dbString);
 
   var db = mongoose.connection;
   db.on('error', function(err) {
     console.error(err);
   });
 
-  var app = express();
+  var app = this.app = express();
 
   app.use(express.static(__dirname + '/static'));
   app.use(express.cookieParser());
@@ -311,7 +311,7 @@ var Democracy = function (dbString) {
 
   var io = require('socket.io').listen(server);
 
-  server.listen(3000);
+  server.listen(config.port || 3000);
 
   io.sockets.on('connection', function (socket) {
     var userId = null;

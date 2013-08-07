@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var Course = require('../course');
 var User = require('../user.js');
 
-var d = new Democracy('mongodb://localhost/hackfmi-test');
+var d = new Democracy({dbString: 'mongodb://localhost/hackfmi-test', port: 3005});
 
 var db = mongoose.connection;
 
@@ -14,7 +14,7 @@ var courseId = null;
 
 before(function (done) {
   request.post({
-    uri: 'http://localhost:3000/register',
+    uri: 'http://localhost:3005/register',
     json: {
       username: 'test',
       name: 'Test',
@@ -25,7 +25,7 @@ before(function (done) {
       return done(err);
     }
     request.post({
-      uri: 'http://localhost:3000/addCourse',
+      uri: 'http://localhost:3005/addCourse',
       json: {
         name: 'Test course',
         ects: 5,
@@ -54,12 +54,9 @@ after(function (done) {
 describe('API', function () {
   describe('Student', function () {
     it('should not be initially enrolled in a course', function (done) {
-      request('http://localhost:3000/getState/' + courseId, function (err, res, body) {
-        if (err) {
-          return done(err);
-        }
+      request('http://localhost:3005/getState/' + courseId, function (err, res, body) {
+        if (err) throw err;
         body.should.equal('Free positions');
-//        assert(body == 'Free positions');
         done();
       });
     });
