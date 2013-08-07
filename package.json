@@ -17,6 +17,7 @@
     "should": "~1.2.2"
   },
   "scripts": {
+    "start": "node ./index.js",
     "test": "./node_modules/jshint/bin/jshint . && ./node_modules/mocha/bin/mocha test"
   }
 }

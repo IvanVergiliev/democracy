@@ -28,6 +28,7 @@ var Democracy = function (dbString) {
   app.use(express.static(__dirname + '/static'));
   app.use(express.cookieParser());
   app.use(express.bodyParser());
+  app.set('views', __dirname + '/views');
   app.set('view engine', 'ejs');
   app.use(express.session({secret: 'gdfgfdgu8934t9ghervorehg', store: new MemoryStore()}));
 
