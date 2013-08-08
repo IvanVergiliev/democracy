@@ -15,7 +15,6 @@ var Event = require('./event.js');
 var Democracy = function (config) {
   var eventEmitter = new events.EventEmitter();
 
-//  mongoose.connect('mongodb://164.138.216.139/hackfmi');
   mongoose.connect(config.dbString);
 
   var db = mongoose.connection;
@@ -25,6 +24,7 @@ var Democracy = function (config) {
 
   var app = this.app = express();
 
+  app.use(express.logger());
   app.use(express.static(__dirname + '/static'));
   app.use(express.cookieParser());
   app.use(express.bodyParser());
@@ -164,7 +164,7 @@ var Democracy = function (config) {
     var userId = req.session.user._id;
     var user = User.findOne({_id: userId}, function (err, user) {
       user.canAddGroup(1, function (ok) {
-        // TODO: Prone to TOCTOU attacks - MUST be fix if going to production.
+        // TODO: Prone to TOCTOU attacks - MUST be fixed if going to production.
         if (ok) {
           user.addGroup(null, 1, function (err, group) {
             group.addEnrollment(data.courseId, function (err, enrollment) {
