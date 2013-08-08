@@ -5,7 +5,7 @@ var Course = require('./course.js');
 var Enrollment = require('./enrollment.js');
 var Group = require('./group.js');
 
-var addTeacherMethods = function (app) {
+var addRoutes = function (app) {
   app.get('/teacher/courses', function (req, res) {
     var teacher = req.session.user;
     Course.find({_teacher: teacher._id}, function (err, courses) {
@@ -46,6 +46,35 @@ var addTeacherMethods = function (app) {
         });
       });
   });
+
+  app.get('/addCourse', function(req, res) {
+    res.render('add_course');
+  });
+
+  app.post('/addCourse', function(req, res) {
+    var data = req.body;
+    var user = req.session.user;
+
+    var course = new Course(data);
+    course._teacher = user._id;
+
+    course.save(function(err, course) {
+      res.redirect('/');
+    });
+  });
+
+  app.get('/teacherCourses', function(req, res) {
+    var user = req.session.user;
+    Course.find({_teacher: user._id}, function(err, courses) {
+      if (err) {
+        console.log(err);
+        res.send(err);
+        return;
+      }
+      res.write(courses.toString());
+      res.end();
+    });
+  });
 };
 
-exports.addTeacherMethods = addTeacherMethods;
+exports.addRoutes = addRoutes;
