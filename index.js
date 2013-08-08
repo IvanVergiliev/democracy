@@ -1,4 +1,4 @@
-var Democracy = require('./democracy.js');
+var Democracy = require('./server/democracy.js');
 
 // TODO(ivan): When the reCaptcha is working, disable it in a parameter for testing.
 // Or implement a ReCaptchaChecker class and mock it for testing.

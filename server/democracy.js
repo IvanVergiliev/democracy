@@ -25,15 +25,17 @@ var Democracy = function (config) {
   var app = this.app = express();
 
   app.use(express.logger());
-  app.use(express.static(__dirname + '/static'));
+  // TODO(ivan): consider mounting this at '/static' to avoid going to
+  // disk for every request.
+  console.log(__dirname);
+  app.use(express.static(__dirname + '/../client'));
   app.use(express.cookieParser());
   app.use(express.bodyParser());
-  app.set('views', __dirname + '/views');
+  app.set('views', __dirname + '/../views');
   app.set('view engine', 'ejs');
   app.use(express.session({secret: 'gdfgfdgu8934t9ghervorehg', store: new MemoryStore()}));
 
-  // TODO(ivan): This is executed when serving static files as well - fix it.
-  app.use(function(req, res, next) {
+  app.use(function checkLoggedIn(req, res, next) {
     if (req.path == '/login' || req.path == '/register') {
       next();
       return;
@@ -44,6 +46,8 @@ var Democracy = function (config) {
       next();
     }
   });
+
+  app.use(app.router);
 
   app.get('/login', function(req, res) {
     res.render('login');
@@ -307,7 +311,7 @@ var Democracy = function (config) {
   });
 
   var http = require('http');
-  var server = http.createServer(app);
+  var server = this.server = http.createServer(app);
 
   var io = require('socket.io').listen(server);
 
