@@ -5,7 +5,6 @@ var mongoose = require('mongoose');
 
 var Course = require('./course.js');
 var eventManager = require('./eventManager.js');
-var QueueEntries = require('./queue_entry.js');
 var Student = require('./student.js');
 var Teacher = require('./teacher.js');
 var User = require('./user.js');

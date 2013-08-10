@@ -3,6 +3,7 @@ var request = require('request');
 
 var actions = require('./actions.js');
 var Course = require('./course.js');
+var Enrollment = require('./enrollment.js');
 var eventManager = require('./eventManager.js');
 var Group = require('./group.js');
 var User = require('./user.js');
@@ -35,31 +36,6 @@ Student.prototype.addRoutes = function (app) {
           });
         });
       });
-  });
-
-  app.get('/enrollments', function(req, res) {
-    var data = req.body;
-    var enr = new Enrollment({startDate: Date.now()});
-    async.series([
-      function(cb) {
-        Group.findOne(function (err, group) {
-          Enrollment.forGroup(group, function(err, enr) {
-            res.write(enr.toString());
-            cb();
-          });
-        });
-      },
-      function(cb) {
-        Course.findOne(function (err, course) {
-          Enrollment.forCourse(course, function(err, enr) {
-            res.write(enr.toString());
-            cb();
-          });
-        });
-      }],
-      function (x) {
-        res.end();
-    });
   });
 
   app.post('/enroll', function(req, res) {
