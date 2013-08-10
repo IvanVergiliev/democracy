@@ -17,22 +17,20 @@ var courseSchema = new mongoose.Schema({
 
 courseSchema.methods.getState = function (userId, cb) {
   var course = this;
-  User.findOne({_id: userId}, function (err, user) {
-    Group.getActiveEnrollment(user, course._id, function (res) {
-      if (res) {
-        cb('Enrolled');
-      } else {
-        Group.getQueueEntry(userId, course._id, function (res) {
-          if (res) {
-            cb('You are in queue');
-          } else {
-            course.hasFreeSpots(function (hasFreeSpots) {
-              cb(hasFreeSpots ? 'Free positions' : 'Full');
-            });
-          }
-        });
-      }
-    });
+  Group.getActiveEnrollment(userId, course._id, function (res) {
+    if (res) {
+      cb('Enrolled');
+    } else {
+      Group.getQueueEntry(userId, course._id, function (res) {
+        if (res) {
+          cb('You are in queue');
+        } else {
+          course.hasFreeSpots(function (hasFreeSpots) {
+            cb(hasFreeSpots ? 'Free positions' : 'Full');
+          });
+        }
+      });
+    }
   });
 };
 

@@ -89,8 +89,8 @@ groupSchema.methods.getActiveEnrollment_SingleGroup = function (courseId, cb) {
   });
 };
 
-groupSchema.statics.getActiveEnrollment = function (user, courseId, cb) {
-  Group.find({_user: user._id}, function (err, groups) {
+groupSchema.statics.getActiveEnrollment = function (userId, courseId, cb) {
+  Group.find({_user: userId}, function (err, groups) {
     async.reduce(groups, null, function (memo, item, callback) {
       item.getActiveEnrollment_SingleGroup(courseId, function (result) {
         if (result !== null) {
@@ -104,7 +104,7 @@ groupSchema.statics.getActiveEnrollment = function (user, courseId, cb) {
   });
 };
 
-groupSchema.methods.getQueueEntry_SingleGoup = function (courseId, cb) {
+groupSchema.methods.getQueueEntry_SingleGroup = function (courseId, cb) {
   var group = this;
   QueueEntry.findOne({_course: courseId, _group: group._id, valid: true},
     function(err, result) {
@@ -115,7 +115,7 @@ groupSchema.methods.getQueueEntry_SingleGoup = function (courseId, cb) {
 groupSchema.statics.getQueueEntry = function (userId, courseId, cb) {
   Group.find({_user: userId}, function (err, groups) {
     async.reduce(groups, null, function (memo, item, callback) {
-      item.getQueueEntry_SingleGoup(courseId, function (result) {
+      item.getQueueEntry_SingleGroup(courseId, function (result) {
         if (result !== null) {
           memo = result;
         }
