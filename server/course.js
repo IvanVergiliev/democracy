@@ -17,29 +17,30 @@ var courseSchema = new mongoose.Schema({
 
 courseSchema.methods.getState = function (userId, cb) {
   var course = this;
-  User.findOne({_id: userId}, function (err, user) {
-    Group.getActiveEnrollment(user, course._id, function (res) {
-      if (res) {
-        cb('Enrolled');
-      } else {
-        Group.getQueueEntry(userId, course._id, function (res) {
-          if (res) {
-            cb('You are in queue');
-          } else {
-            Enrollment.find({_course: course.id})
-            .exists('endDate', false)
-            .exec(function (err, enrollments) {
-              if (enrollments.length < course.limit) {
-                cb('Free positions');
-              } else {
-                cb('Full');
-              }
-            });
-          }
-        });
-      }
-    });
+  Group.getActiveEnrollment(userId, course._id, function (res) {
+    if (res) {
+      cb('Enrolled');
+    } else {
+      Group.getQueueEntry(userId, course._id, function (res) {
+        if (res) {
+          cb('You are in queue');
+        } else {
+          course.hasFreeSpots(function (hasFreeSpots) {
+            cb(hasFreeSpots ? 'Free positions' : 'Full');
+          });
+        }
+      });
+    }
   });
+};
+
+courseSchema.methods.hasFreeSpots = function (cb) {
+  var course = this;
+  Enrollment
+    .count({_course: course.id, endDate: {$exists: false}})
+    .exec(function (err, count) {
+      cb(count < course.limit);
+    });
 };
 
 var Course = mongoose.model('Course', courseSchema);
