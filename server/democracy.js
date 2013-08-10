@@ -1,22 +1,16 @@
 var async = require('async');
-var events = require('events');
 var express = require('express');
 var MemoryStore = require('connect').session.MemoryStore;
 var mongoose = require('mongoose');
 
-var actions = require('./actions.js');
 var Course = require('./course.js');
-var Enrollment = require('./enrollment.js');
-var Event = require('./event.js');
-var Group = require('./group.js');
+var eventManager = require('./eventManager.js');
 var QueueEntries = require('./queue_entry.js');
 var Student = require('./student.js');
 var Teacher = require('./teacher.js');
 var User = require('./user.js');
 
 var Democracy = function (config) {
-  var eventEmitter = new events.EventEmitter();
-
   mongoose.connect(config.dbString);
 
   var db = mongoose.connection;
@@ -29,7 +23,6 @@ var Democracy = function (config) {
   app.use(express.logger());
   // TODO(ivan): consider mounting this at '/static' to avoid going to
   // disk for every request.
-  console.log(__dirname);
   app.use(express.static(__dirname + '/../client'));
   app.use(express.cookieParser());
   app.use(express.bodyParser());
@@ -86,7 +79,8 @@ var Democracy = function (config) {
   });
 
   Teacher.addRoutes(app);
-  Student.addRoutes(app);
+  var student = new Student(config);
+  student.addRoutes(app);
 
   var http = require('http');
   var server = this.server = http.createServer(app);
@@ -103,7 +97,7 @@ var Democracy = function (config) {
       userId = id;
     });
 
-    eventEmitter.on('stateChanged', function (courseId) {
+    eventManager.on('stateChanged', function (courseId) {
       if (!userId) {
         return;
       }

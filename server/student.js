@@ -1,8 +1,19 @@
 var async = require('async');
+var request = require('request');
 
+var actions = require('./actions.js');
 var Course = require('./course.js');
+var eventManager = require('./eventManager.js');
+var Group = require('./group.js');
+var User = require('./user.js');
 
-exports.addRoutes = function (app) {
+var Student = function (config) {
+  this.config = config;
+};
+
+Student.prototype.addRoutes = function (app) {
+  var student = this;
+
   app.get('/', function(req, res) {
     var userId = req.session.user._id;
     Course.find()
@@ -53,29 +64,49 @@ exports.addRoutes = function (app) {
 
   app.post('/enroll', function(req, res) {
     var data = req.body;
-    var userId = req.session.user._id;
-    var user = User.findOne({_id: userId}, function (err, user) {
-      user.canAddGroup(1, function (ok) {
-        // TODO: Prone to TOCTOU attacks - MUST be fixed if going to production.
-        if (ok) {
-          user.addGroup(null, 1, function (err, group) {
-            group.addEnrollment(data.courseId, function (err, enrollment) {
-              eventEmitter.emit('stateChanged', data.courseId);
-              res.json({
-                result: true
-              });
-            });
-          });
-          // enroll
-          // return OK
-        } else {
+    var captchaData = {
+      privatekey: student.config.recaptchaPrivate,
+      remoteip: req.connection.remoteAddress,
+      challenge: data.challenge,
+      response: data.response
+    };
+    request.post(
+      'http://www.google.com/recaptcha/api/verify',
+      {form: captchaData},
+      function (err, recaptchaRes, body) {
+        lines = body.split('\n');
+        if (lines[0] === 'false') {
           res.json({
-            result: false,
-            msg: 'Нямаш право да записваш повече изборни!'
+            result: 'recaptcha-error',
+            msg: 'Неправилно попълнен reCaptcha',
+            error: lines[1]
+          });
+        } else {
+          var userId = req.session.user._id;
+          var user = User.findOne({_id: userId}, function (err, user) {
+            user.canAddGroup(1, function (ok) {
+              // TODO: Prone to TOCTOU attacks - MUST be fixed if going to production.
+              if (ok) {
+                user.addGroup(null, 1, function (err, group) {
+                  group.addEnrollment(data.courseId, function (err, enrollment) {
+                    eventManager.emit('stateChanged', data.courseId);
+                    res.json({
+                      result: true
+                    });
+                  });
+                });
+                // enroll
+                // return OK
+              } else {
+                res.json({
+                  result: false,
+                  msg: 'Нямаш право да записваш повече изборни!'
+                });
+              }
+            });
           });
         }
       });
-    });
   });
 
   app.get('/getActiveEnrollment/:courseId', function (req, res) {
@@ -198,3 +229,5 @@ exports.addRoutes = function (app) {
     });
   });
 };
+
+module.exports = Student;

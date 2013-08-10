@@ -10,11 +10,8 @@ $('#all-courses').tooltip({
     selector: "a[data-toggle=tooltip]"
 });
 
-/* clone reCAPTCHA */
-$(function() {
-    $('#firstReCAPTCHA').html($('#originalReCAPTCHA').clone(true, true));
-    $('#secondReCAPTCHA').html($('#originalReCAPTCHA').clone(true, true));
-});
+// TODO(ivan): add a common way to get this - e.g. api /publicKey
+var recaptchaPublic = '6Lcs7eUSAAAAAPXrTovFuQlWdKVe4LeJzTbu7GHb';
 
 $('.showDescription').click(function() {
   $.get('templates/course_info.ejs', function (txt) {
@@ -23,13 +20,50 @@ $('.showDescription').click(function() {
   });
 });
 
+var showRecatcha = function (publicKey) {
+  Recaptcha.create(publicKey, 'recaptcha', {
+    tabindex: 1,
+    theme: "red",
+    callback: Recaptcha.focus_response_field
+  });
+};
+
 $('.showEnroll').click(function() {
   var id = this.dataset.id;
   $.get('templates/enroll.ejs', function (txt) {
+    // TODO(ivan): Show real info about the course here.
     $('.modal').html(ejs.render(txt, {_id: id}));
-    $('#firstReCAPTCHA').html($('#originalReCAPTCHA').clone(true, true));
+    showRecatcha(recaptchaPublic);
     $('#info-linux-sys-admin').modal('show');
   });
+});
+
+$('body').on('click', '.enroll', function () {
+  var id = this.dataset.id;
+  $.ajax({
+    type: 'post',
+    url: 'enroll',
+    data: {
+      courseId: id,
+      challenge: Recaptcha.get_challenge(),
+      response: Recaptcha.get_response()
+    },
+    success: function (json) {
+      if (json.result === true) {
+        $('.enrollResult').html('Готово!');
+        $('a[data-id=' + id + '].unenroll').show();
+        $('a[data-id=' + id + '].showEnroll').hide();
+        $('a[data-id=' + id + '].enroll').hide();
+      } else {
+        $('.enrollResult').html(json.msg);
+        if (json.result === 'recaptcha-error') {
+          showRecatcha(recaptchaPublic + '&error=' + json.error);
+        }
+      }
+      $('.enrollResult').show();
+    }
+  });
+  return false;
 });
 
 $('body').on('click', '.unenroll', function() {
@@ -43,29 +77,6 @@ $('body').on('click', '.unenroll', function() {
         $('a[data-id=' + id + '].showEnroll').show();
         $('a[data-id=' + id + '].unenroll').hide();
       }
-    }
-  });
-  return false;
-});
-
-$('body').on('click', '.enroll', function () {
-  var id = this.dataset.id;
-  $.ajax({
-    type: 'post',
-    url: 'enroll',
-    data: {
-      courseId: id
-    },
-    success: function (json) {
-      if (json.result) {
-        $('.enrollResult').html('Готово!');
-        $('a[data-id=' + id + '].unenroll').show();
-        $('a[data-id=' + id + '].showEnroll').hide();
-        $('a[data-id=' + id + '].enroll').hide();
-      } else {
-        $('.enrollResult').html(json.msg);
-      }
-      $('.enrollResult').show();
     }
   });
   return false;
