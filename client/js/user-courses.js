@@ -20,7 +20,7 @@ $('.showDescription').click(function() {
   });
 });
 
-var showRecatcha = function (publicKey) {
+var showRecaptcha = function (publicKey) {
   Recaptcha.create(publicKey, 'recaptcha', {
     tabindex: 1,
     theme: "red",
