@@ -30,9 +30,10 @@ var showRecatcha = function (publicKey) {
 
 $('.showEnroll').click(function() {
   var id = this.dataset.id;
+  var name = this.dataset.name;
   $.get('templates/enroll.ejs', function (txt) {
     // TODO(ivan): Show real info about the course here.
-    $('.modal').html(ejs.render(txt, {_id: id}));
+    $('.modal').html(ejs.render(txt, {_id: id, _name: name}));
     showRecatcha(recaptchaPublic);
     $('#info-linux-sys-admin').modal('show');
   });
