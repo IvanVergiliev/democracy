@@ -59,26 +59,10 @@ Student.prototype.addRoutes = function (app) {
           });
         } else {
           var userId = req.session.user._id;
-          var user = User.findOne({_id: userId}, function (err, user) {
-            user.canAddGroup(1, function (ok) {
-              // TODO: Prone to TOCTOU attacks - MUST be fixed if going to production.
-              if (ok) {
-                user.addGroup(null, 1, function (err, group) {
-                  group.addEnrollment(data.courseId, function (err, enrollment) {
-                    eventManager.emit('stateChanged', data.courseId);
-                    res.json({
-                      result: true
-                    });
-                  });
-                });
-                // enroll
-                // return OK
-              } else {
-                res.json({
-                  result: false,
-                  msg: 'Нямаш право да записваш повече изборни!'
-                });
-              }
+          Course.enroll(userId, data.courseId, function (err) {
+            res.json({
+              result: !err,
+              err: err
             });
           });
         }
@@ -103,25 +87,28 @@ Student.prototype.addRoutes = function (app) {
   });
 
   var unenroll = function (enrollment, cb) {
-    Group.findOne({_id: enrollment._group}, function(err, group) {
-      enrollment.endDate = Date.now();
-      var fixEnrollment = function() {
-        enrollment.save(function() {
-          actions.afterUnregistrationFromCourse(enrollment._course, cb);
-        });
-      };
+    // TODO: check if student is actually enrolled for this course.
+    Course.update({_id: enrollment._course}, {$inc: {enrolled: -1}}, function () {
+      Group.findOne({_id: enrollment._group}, function(err, group) {
+        enrollment.endDate = Date.now();
+        var fixEnrollment = function() {
+          enrollment.save(function() {
+            actions.afterUnregistrationFromCourse(enrollment._course, cb);
+          });
+        };
 
-      if (!group.name) {
-        group.maxEntries = 0;
-        group.save(fixEnrollment);
-      } else {
-        fixEnrollment();
-      }
+        if (!group.name) {
+          group.maxEntries = 0;
+          group.save(fixEnrollment);
+        } else {
+          fixEnrollment();
+        }
+      });
     });
   };
 
   app.get('/unenroll/:courseId', function(req, res) {
-    Group.getActiveEnrollment(req.session.user, req.params.courseId, function (enrollment) {
+    Group.getActiveEnrollment(req.session.user._id, req.params.courseId, function (enrollment) {
       unenroll(enrollment, function () {
         res.json({
           result: true
@@ -131,7 +118,7 @@ Student.prototype.addRoutes = function (app) {
   });
 
   app.get('/unenroll/:userId/:courseId', function(req, res) {
-    User.findOne({_id: Greq.params.userId}, function(err, user) {
+    User.findOne({_id: req.params.userId}, function(err, user) {
       Group.getActiveEnrollment(user, req.params.courseId, unenroll);
     });
   });

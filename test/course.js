@@ -6,7 +6,7 @@ var User = require('../server/user.js');
 
 describe('Course', function () {
   var userId = null;
-  before(function (done) {
+  beforeEach(function (done) {
     mongoose.connect('mongodb://localhost/hackfmi-test');
     var user = new User({username: 'test', password: 'test'});
     user.save(function (err, user) {
@@ -15,7 +15,7 @@ describe('Course', function () {
     });
   });
 
-  after(function (done) {
+  afterEach(function (done) {
     User.remove({}, function () {
       mongoose.connection.close();
       done();
@@ -35,6 +35,59 @@ describe('Course', function () {
     course.getState(userId, function (state) {
       state.should.equal('Full');
       done();
+    });
+  });
+
+  describe('enroll', function () {
+    var courseId = null;
+
+    beforeEach(function (done) {
+      var course = new Course({name: 'test', limit: 1, enrolled: 0});
+      course.save(function (err, course) {
+        courseId = course._id;
+        done();
+      });
+    });
+
+    afterEach(function (done) {
+      Course.remove({_id: courseId}, done);
+    });
+
+    it('enrolls a student and state reflects the enrollment', function (done) {
+      Course.enroll(userId, courseId, function (err) {
+        should.not.exist(err);
+        Course.findOne({_id: courseId}, function (err, course) {
+          course.getState(userId, function (state) {
+            state.should.equal('Enrolled');
+            done();
+          });
+        });
+      });
+    });
+
+    it('does not enroll a student who\'s reached his limit', function (done) {
+      var oldFunc = User.prototype.maxSimultaneous;
+      User.prototype.maxSimultaneous = function () {return 0;};
+      Course.enroll(userId, courseId, function (err) {
+        err.should.equal('GroupLimitExceeded');
+        User.prototype.maxSimultaneous = oldFunc;
+        User.findOne({_id: userId}, function (err, user) {
+          user.enrolledIn.should.equal(0);
+          done();
+        });
+      });
+    });
+
+    it('does not enroll a student in a full course', function (done) {
+      Course.update({_id: courseId}, {limit: 0}, function () {
+        Course.enroll(userId, courseId, function (err) {
+          err.should.equal('CourseFull');
+          Course.findOne({_id: courseId}, function (err, course) {
+            course.enrolled.should.equal(0);
+            done();
+          });
+        });
+      });
     });
   });
 });

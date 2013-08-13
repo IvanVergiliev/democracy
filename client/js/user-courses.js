@@ -32,9 +32,8 @@ $('.showEnroll').click(function() {
   var id = this.dataset.id;
   var name = this.dataset.name;
   $.get('templates/enroll.ejs', function (txt) {
-    // TODO(ivan): Show real info about the course here.
     $('.modal').html(ejs.render(txt, {_id: id, _name: name}));
-    showRecatcha(recaptchaPublic);
+    showRecaptcha(recaptchaPublic);
     $('#info-linux-sys-admin').modal('show');
   });
 });
@@ -58,7 +57,7 @@ $('body').on('click', '.enroll', function () {
       } else {
         $('.enrollResult').html(json.msg);
         if (json.result === 'recaptcha-error') {
-          showRecatcha(recaptchaPublic + '&error=' + json.error);
+          showRecaptcha(recaptchaPublic + '&error=' + json.error);
         }
       }
       $('.enrollResult').show();

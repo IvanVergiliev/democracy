@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
-var Group = require('./group.js');
 
 var userSchema = new mongoose.Schema({
   username: String,
   name: String,
-  password: String
+  password: String,
+  enrolledIn: Number // TODO: Move this and some other stuff to a separate Student class ?
 });
 
 userSchema.statics.exists = function (user, pass, cb) {
@@ -14,31 +14,8 @@ userSchema.statics.exists = function (user, pass, cb) {
 };
 
 userSchema.methods.maxSimultaneous = function () {
-  // TODO: make this smarted according to rating.
+  // TODO: make this smarter according to rating.
   return 100;
-};
-
-userSchema.methods.canAddGroup = function (maxSize, cb) {
-  var user = this;
-  var groups = Group.find({_user: this._id}, function (err, groups) {
-    console.log('groups: ');
-    console.log(groups);
-    // TODO: can be replaced with a MongoDB aggregate.
-    var sum = 0;
-    for (var i = 0; i < groups.length; ++i) {
-      sum += groups[i].maxEntries;
-    }
-    var ok = sum < user.maxSimultaneous();
-    cb(ok);
-  });
-};
-
-userSchema.methods.addGroup = function (name, maxEntries, cb) {
-  var group = new Group({
-    maxEntries: 1,
-    _user: this.id
-  });
-  group.save(cb);
 };
 
 var User = mongoose.model('User', userSchema);

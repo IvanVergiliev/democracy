@@ -1,7 +1,9 @@
 var async = require('async');
 var mongoose = require('mongoose');
+
 var Enrollment = require('./enrollment.js');
 var QueueEntry = require('./queue_entry.js');
+var User = require('./user.js');
 
 var groupSchema = new mongoose.Schema({
   name: String,
@@ -138,6 +140,27 @@ groupSchema.statics.getWithEnrollments = function (userId, callback) {
           cb(null, group);
         });
       }, callback);
+  });
+};
+
+groupSchema.statics.addGroup = function (userId, name, maxEntries, cb) {
+  var group = new Group({
+    maxEntries: maxEntries,
+    _user: userId
+  });
+  group.save(cb);
+};
+
+groupSchema.statics.reserveIfFree = function (userId, maxEntries, cb) {
+  User.findByIdAndUpdate(userId, {$inc: {enrolledIn: maxEntries}}, {new: true}, function (err, user) {
+    if (user.enrolledIn > user.maxSimultaneous()) {
+      user.enrolledIn -= maxEntries;
+      user.save(function () {
+        cb(false);
+      });
+    } else {
+      cb(true);
+    }
   });
 };
 
