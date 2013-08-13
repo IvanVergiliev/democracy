@@ -152,7 +152,7 @@ groupSchema.statics.addGroup = function (userId, name, maxEntries, cb) {
 };
 
 groupSchema.statics.reserveIfFree = function (userId, maxEntries, cb) {
-  User.findByIdAndUpdate(userId, {$inc: {enrolledIn: maxEntries}}, {new: true}, function (err, user) {
+  User.findByIdAndUpdate(userId, {$inc: {enrolledIn: maxEntries}}, {'new': true}, function (err, user) {
     if (user.enrolledIn > user.maxSimultaneous()) {
       user.enrolledIn -= maxEntries;
       user.save(function () {

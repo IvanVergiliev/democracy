@@ -13,7 +13,7 @@ var courseSchema = new mongoose.Schema({
   limit: Number,
   enrolled: {
     type: Number,
-    default: 0
+    'default': 0
   },
   _teacher: {
     type: mongoose.Schema.Types.ObjectId,
@@ -22,7 +22,7 @@ var courseSchema = new mongoose.Schema({
 });
 
 courseSchema.statics.reserveIfFree = function (courseId, count, cb) {
-  Course.findByIdAndUpdate(courseId, {$inc: {enrolled: count}}, {new: true}, function (err, course) {
+  Course.findByIdAndUpdate(courseId, {$inc: {enrolled: count}}, {'new': true}, function (err, course) {
     if (course.enrolled > course.limit) {
       course.enrolled -= count;
       course.save(function () {
