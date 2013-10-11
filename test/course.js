@@ -67,7 +67,7 @@ describe('Course', function () {
 
     it('does not enroll a student who\'s reached his limit', function (done) {
       var oldFunc = User.prototype.maxSimultaneous;
-      User.prototype.maxSimultaneous = function () {return 0;};
+      User.prototype.maxSimultaneous = function () { return 0; };
       Course.enroll(userId, courseId, function (err) {
         err.should.equal('GroupLimitExceeded');
         User.prototype.maxSimultaneous = oldFunc;

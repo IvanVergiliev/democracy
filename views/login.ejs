@@ -10,6 +10,9 @@
     <body>
         <div class="container container-body">
             <form class="form-signin" action="login" method="post">
+                <% if (typeof(error) !== 'undefined') { %>
+                  <%= error %>
+                <% } %>
                 <h2 class="form-signin-heading">Вход в системата</h2>
                 <!--                <input type="text" class="input-block-level" placeholder="Имейл адрес" name="email"> /-->
                 <input type="text" name="username" placeholder="Потребителско име" class="input-block-level">
