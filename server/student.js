@@ -138,10 +138,12 @@ Student.prototype.addRoutes = function (app) {
   });
 
   app.get('/enqueue/:courseId', function(req, res) {
+    // TODO: Guard this with a Captcha.
     var userId = req.session.user._id;
     var courseId = req.params.courseId;
 
     User.findOne({_id: userId}, function(err, user) {
+      // FIXME: This method does not exist anymore.
       user.canAddGroup(1, function(ok) {
         if (ok) {
           user.addGroup(null, 1, function(err, group) {
