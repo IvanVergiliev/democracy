@@ -8,6 +8,9 @@ var eventManager = require('./eventManager.js');
 var Group = require('./group.js');
 var User = require('./user.js');
 
+eventManager.on('newQueueEntry', Course.enrollFromQueue);
+eventManager.on('freeSpot', Course.enrollFromQueue);
+
 var Student = function (config) {
   this.config = config;
 };
@@ -108,18 +111,18 @@ Student.prototype.addRoutes = function (app) {
   };
 
   app.get('/unenroll/:courseId', function(req, res) {
-    Group.getActiveEnrollment(req.session.user._id, req.params.courseId, function (enrollment) {
-      unenroll(enrollment, function () {
-        res.json({
-          result: true
-        });
+    Course.unenroll(req.session.user._id, req.params.courseId, function (unenrollResult) {
+      res.json({
+        result: unenrollResult
       });
     });
   });
 
   app.get('/unenroll/:userId/:courseId', function(req, res) {
-    User.findOne({_id: req.params.userId}, function(err, user) {
-      Group.getActiveEnrollment(user, req.params.courseId, unenroll);
+    Course.unenroll(req.params.userId, req.params.courseId, function (unenrollResult) {
+      res.json({
+        result: unenrollResult
+      });
     });
   });
 

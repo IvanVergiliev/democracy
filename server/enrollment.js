@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
 
 var enrollmentSchema = new mongoose.Schema({
+  enrolled: {
+    type: Boolean,
+    default: false
+  },
   startDate: Date,
   endDate: Date,
   _group: {
@@ -10,6 +14,10 @@ var enrollmentSchema = new mongoose.Schema({
   _course: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Course'
+  },
+  _user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   }
 });
 

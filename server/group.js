@@ -61,7 +61,8 @@ groupSchema.methods.addEnrollment = function (courseId, cb) {
   var enrollment = new Enrollment({
     startDate: Date.now(),
     _group: this._id,
-    _course: courseId
+    _course: courseId,
+    _user: this._user
   });
   enrollment.save(cb);
 };
@@ -152,7 +153,11 @@ groupSchema.statics.addGroup = function (userId, name, maxEntries, cb) {
 };
 
 groupSchema.statics.reserveIfFree = function (userId, maxEntries, cb) {
+  console.log('userId is ' + userId);
   User.findByIdAndUpdate(userId, {$inc: {enrolledIn: maxEntries}}, {'new': true}, function (err, user) {
+    if (err || !user) {
+      return cb(false);
+    }
     if (user.enrolledIn > user.maxSimultaneous()) {
       user.enrolledIn -= maxEntries;
       user.save(function () {

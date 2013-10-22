@@ -40,18 +40,48 @@ courseSchema.statics.enroll = function (userId, courseId, cb) {
       // TODO: handle these(along with CourseFull) in the front end.
       return cb('GroupLimitExceeded');
     }
-    Course.reserveIfFree(courseId, 1, function (ok) {
-      if (!ok) {
-        return cb('CourseFull');
-      }
-      Group.addGroup(userId, null, 1, function (err, group) {
-        group.addEnrollment(courseId, function (err, enrollment) {
-          eventManager.emit('stateChanged', courseId);
-          cb(null);
-        });
+    Group.addGroup(userId, null, 1, function (err, group) {
+      group.addEnrollment(courseId, function (err, enrollment) {
+        eventManager.emit('stateChanged', courseId);
+        eventManager.emit('newQueueEntry', courseId);
+        cb(null);
       });
     });
   });
+};
+
+courseSchema.statics.enrollFromQueue = function (courseId) {
+  console.log('calling enrollFromQueue');
+  Course.reserveIfFree(courseId, 1, function (ok) {
+    if (!ok) {
+      return cb('CourseFull');
+    }
+    Enrollment.findOneAndUpdate(
+      {_course: courseId, enrolled: false},
+      {enrolled: true},
+      {sort: 'startDate'},
+      function (err, res) {
+        console.log(err);
+        console.log(res);
+      });
+  });
+};
+
+courseSchema.statics.unenroll = function (userId, courseId, cb) {
+  console.log('userId: ' + userId + ', courseId: ' + courseId);
+  Enrollment.findOneAndUpdate(
+    {_course: courseId, _user: userId, enrolled: true},
+    {enrolled: false},
+    {new: false},
+    function (err, res) {
+      console.log('err is ' + err);
+      console.log('res is ' + res);
+      if (err || !res || !res.enrolled) {
+        return cb(false);
+      }
+      eventManager.emit('freeSpot', courseId);
+      cb(true);
+    });
 };
 
 courseSchema.methods.getState = function (userId, cb) {
