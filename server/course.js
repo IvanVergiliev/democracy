@@ -72,7 +72,7 @@ courseSchema.statics.unenroll = function (userId, courseId, cb) {
   Enrollment.findOneAndUpdate(
     {_course: courseId, _user: userId, enrolled: true},
     {enrolled: false},
-    {new: false},
+    {'new': false},
     function (err, res) {
       console.log('err is ' + err);
       console.log('res is ' + res);

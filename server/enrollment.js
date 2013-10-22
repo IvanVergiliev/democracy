@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var enrollmentSchema = new mongoose.Schema({
   enrolled: {
     type: Boolean,
-    default: false
+    'default': false
   },
   startDate: Date,
   endDate: Date,
