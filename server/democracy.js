@@ -86,7 +86,7 @@ var Democracy = function (config) {
 
   var io = require('socket.io').listen(server);
 
-  server.listen(config.port || 3000);
+  server.listen(config.port);
 
   io.sockets.on('connection', function (socket) {
     var userId = null;
