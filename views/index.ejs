@@ -144,7 +144,7 @@
                             <td>
                                 <a href="#" role="button" class="btn btn-danger unenroll" data-id="<%= courses[i]._id %>" style="display: <%= (statuses[i] == 'Enrolled') ? '' : 'none' %>">Отпиши</a>
                                 <a href="#enroll-linux-sys-admin" role="button" class="btn btn-success showEnroll" data-toggle="modal" data-id="<%= courses[i]._id %>" data-name="<%= courses[i].name %>" style="display: <%= statuses[i] == 'Free positions' ? '' : 'none' %>">Запиши</a>
-                                <a href="#" role="button" class="btn btn-warning enqueue" data-id="<%= courses[i]._id %>" style="display: <%= statuses[i] == 'Full' ? '' : 'none' %>">Нареди се на опашката</a>
+                                <a href="#" role="button" class="btn btn-warning enqueue" data-id="<%= courses[i]._id %>" data-name="<%= courses[i].name %>" style="display: <%= statuses[i] == 'Full' ? '' : 'none' %>">Нареди се на опашката</a>
                                 <a href="#" role="button" class="btn btn-danger dequeue" data-id="<%= courses[i]._id %>" style="display: <%= statuses[i] == 'You are in queue' ? '' : 'none' %>">Излез от опашката</a>
                             </td>
                           </tr>

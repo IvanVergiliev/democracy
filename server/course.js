@@ -54,14 +54,25 @@ courseSchema.statics.enrollFromQueue = function (courseId) {
   console.log('calling enrollFromQueue');
   Course.reserveIfFree(courseId, 1, function (ok) {
     if (!ok) {
-      return cb('CourseFull');
+      return; // cb('CourseFull');
     }
     Enrollment.findOneAndUpdate(
-      {_course: courseId, enrolled: false},
+      {_course: courseId, enrolled: false, endDate: null},
       {enrolled: true},
       {sort: 'startDate'},
       function (err, res) {
-        console.log(err);
+        if (err || !res) {
+          Course.findByIdAndUpdate(courseId, {$inc: {enrolled: -1}}, {'new': true},
+            function (err, course) {
+              console.log('err and res from decrementing course enrollment:');
+              console.log(err);
+              console.log(course);
+            });
+          // TODO: Retry here? Potentially with backoff.
+          return;
+        }
+        eventManager.emit('enrolled', courseId, res._user);
+        console.log("error from findAndUpdate: " + err);
         console.log(res);
       });
   });
@@ -70,17 +81,25 @@ courseSchema.statics.enrollFromQueue = function (courseId) {
 courseSchema.statics.unenroll = function (userId, courseId, cb) {
   console.log('userId: ' + userId + ', courseId: ' + courseId);
   Enrollment.findOneAndUpdate(
-    {_course: courseId, _user: userId, enrolled: true},
-    {enrolled: false},
+    {_course: courseId, _user: userId, endDate: null},
+    {enrolled: false, endDate: new Date()},
     {'new': false},
     function (err, res) {
       console.log('err is ' + err);
       console.log('res is ' + res);
-      if (err || !res || !res.enrolled) {
-        return cb(false);
+      if (err || !res) {
+        return cb({result: false});
       }
-      eventManager.emit('freeSpot', courseId);
-      cb(true);
+      Course.findByIdAndUpdate(courseId, {$inc: {enrolled: res.enrolled ? -1 : 0}}, {'new': true},
+        function (err, course) {
+          console.log('err and res from decrementing course enrollment:');
+          console.log(err);
+          console.log(course);
+          if (res.enrolled) {
+            eventManager.emit('freeSpot', courseId);
+          }
+          cb({result: true, hasFreeSpots: course.hasFreeSpots()});
+        });
     });
 };
 
@@ -88,15 +107,14 @@ courseSchema.methods.getState = function (userId, cb) {
   var course = this;
   Group.getActiveEnrollment(userId, course._id, function (res) {
     if (res) {
-      cb('Enrolled');
+      console.log(res);
+      if (res.enrolled) {
+        cb('Enrolled');
+      } else {
+        cb('You are in queue');
+      }
     } else {
-      Group.getQueueEntry(userId, course._id, function (res) {
-        if (res) {
-          cb('You are in queue');
-        } else {
-          cb(course.hasFreeSpots() ? 'Free positions' : 'Full');
-        }
-      });
+      cb(course.hasFreeSpots() ? 'Free positions' : 'Full');
     }
   });
 };

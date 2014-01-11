@@ -111,14 +111,13 @@ Student.prototype.addRoutes = function (app) {
   };
 
   app.get('/unenroll/:courseId', function(req, res) {
-    Course.unenroll(req.session.user._id, req.params.courseId, function (unenrollResult) {
-      res.json({
-        result: unenrollResult
-      });
+    Course.unenroll(req.session.user._id, req.params.courseId, function (result) {
+      res.json(result);
     });
   });
 
   app.get('/unenroll/:userId/:courseId', function(req, res) {
+    // TODO: Guard this to admins only.
     Course.unenroll(req.params.userId, req.params.courseId, function (unenrollResult) {
       res.json({
         result: unenrollResult

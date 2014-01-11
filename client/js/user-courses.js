@@ -28,7 +28,7 @@ var showRecaptcha = function (publicKey) {
   });
 };
 
-$('.showEnroll').click(function() {
+$('.showEnroll,.enqueue').click(function() {
   var id = this.dataset.id;
   var name = this.dataset.name;
   $.get('templates/enroll.ejs', function (txt) {
@@ -51,8 +51,10 @@ $('body').on('click', '.enroll', function () {
     success: function (json) {
       if (json.result === true) {
         $('.enrollResult').html('Готово!');
-        $('a[data-id=' + id + '].unenroll').show();
+        $('a[data-id=' + id + '].dequeue').show();
+        $('a[data-id=' + id + '].unenroll').hide();
         $('a[data-id=' + id + '].showEnroll').hide();
+        $('a[data-id=' + id + '].enqueue').hide();
         $('a[data-id=' + id + '].enroll').hide();
       } else {
         $('.enrollResult').html(json.msg);
@@ -66,7 +68,7 @@ $('body').on('click', '.enroll', function () {
   return false;
 });
 
-$('body').on('click', '.unenroll', function() {
+$('body').on('click', '.unenroll,.dequeue', function() {
   var id = this.dataset.id;
   $.ajax({
     type: 'get',
@@ -74,38 +76,13 @@ $('body').on('click', '.unenroll', function() {
     success: function (json) {
       if (json.result) {
         $('.unenrollStatus').html('Отписан!');
-        $('a[data-id=' + id + '].showEnroll').show();
+        if (json.hasFreeSpots) {
+          $('a[data-id=' + id + '].showEnroll').show();
+        } else {
+          $('a[data-id=' + id + '].enqueue').show();
+        }
         $('a[data-id=' + id + '].unenroll').hide();
-      }
-    }
-  });
-  return false;
-});
-
-$('body').on('click', '.enqueue', function () {
-  var id = this.dataset.id;
-  $.ajax({
-    type: 'get',
-    url: 'enqueue/' + id,
-    success: function (json) {
-      if (json.result) {
-        $('a[data-id=' + id + '].enqueue').hide();
-        $('a[data-id=' + id + '].dequeue').show();
-      }
-    }
-  });
-  return false;
-});
-
-$('body').on('click', '.dequeue', function () {
-  var id = this.dataset.id;
-  $.ajax({
-    type: 'get',
-    url: 'dequeue/' + id,
-    success: function (json) {
-      if (json.result) {
         $('a[data-id=' + id + '].dequeue').hide();
-        $('a[data-id=' + id + '].enqueue').show();
       }
     }
   });

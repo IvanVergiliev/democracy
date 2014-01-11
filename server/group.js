@@ -96,7 +96,7 @@ groupSchema.statics.getActiveEnrollment = function (userId, courseId, cb) {
   Group.find({_user: userId}, function (err, groups) {
     async.reduce(groups, null, function (memo, item, callback) {
       item.getActiveEnrollment_SingleGroup(courseId, function (result) {
-        if (result !== null) {
+        if (result !== null && !result.endDate) {
           memo = result;
         }
         callback(null, memo);

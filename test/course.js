@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var should = require('should');
 
 var Course = require('../server/course.js');
+var eventManager = require('../server/eventManager.js');
 var User = require('../server/user.js');
 
 describe('Course', function () {
@@ -56,11 +57,10 @@ describe('Course', function () {
     it('enrolls a student and state reflects the enrollment', function (done) {
       Course.enroll(userId, courseId, function (err) {
         should.not.exist(err);
-        Course.findOne({_id: courseId}, function (err, course) {
-          course.getState(userId, function (state) {
-            state.should.equal('Enrolled');
-            done();
-          });
+        eventManager.on('enrolled', function (curCourseId, curUserId) {
+          courseId.toString().should.equal(curCourseId.toString());
+          userId.toString().should.equal(curUserId.toString());
+          done();
         });
       });
     });
@@ -81,11 +81,19 @@ describe('Course', function () {
     it('does not enroll a student in a full course', function (done) {
       Course.update({_id: courseId}, {limit: 0}, function () {
         Course.enroll(userId, courseId, function (err) {
-          err.should.equal('CourseFull');
-          Course.findOne({_id: courseId}, function (err, course) {
-            course.enrolled.should.equal(0);
+          should.not.exist(err);
+          var timeoutId = setTimeout(function () {
             done();
+          }, 100);
+          eventManager.on('enrolled', function() {
+            clearTimeout(timeoutId);
+            should.fail('Student was enrolled although course is full.');
           });
+//          err.should.equal('CourseFull');
+//          Course.findOne({_id: courseId}, function (err, course) {
+//            course.enrolled.should.equal(0);
+//            done();
+//          });
         });
       });
     });

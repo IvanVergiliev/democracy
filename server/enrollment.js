@@ -6,7 +6,10 @@ var enrollmentSchema = new mongoose.Schema({
     'default': false
   },
   startDate: Date,
-  endDate: Date,
+  endDate: {
+    type: Date,
+    'default': null
+  },
   _group: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Group'
