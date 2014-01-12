@@ -116,4 +116,8 @@ $(function () {
     }
     console.log(arguments);
   });
+  socket.on('enrolled', function (courseId) {
+    $('a[data-id=' + courseId + '].dequeue').hide();
+    $('a[data-id=' + courseId + '].unenroll').show();
+  });
 });

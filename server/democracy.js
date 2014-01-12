@@ -96,18 +96,12 @@ var Democracy = function (config) {
       userId = id;
     });
 
-//    eventManager.on('stateChanged', function (courseId) {
-//      if (!userId) {
-//        return;
-//      }
-//      Course.findOne({_id: courseId}, function (err, course) {
-//        console.log('course is ');
-//        console.log(course);
-//        course.getState(userId, function (msg) {
-//          socket.emit('stateChanged', userId, courseId, msg);
-//        });
-//      });
-//    });
+    eventManager.on('enrolled', function (courseId, eventUserId) {
+      if (!userId || userId.toString() != eventUserId.toString()) {
+        return;
+      }
+      socket.emit('enrolled', courseId);
+    });
   });
 };
 
